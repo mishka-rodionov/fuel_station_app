@@ -12,15 +12,30 @@ import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.map.VisibleRegionUtils
+import com.yandex.mapkit.search.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var searchManager: SearchManager
+    private lateinit var searchSession: Session
+
+    fun submitQuery(query: String) {
+        searchSession = searchManager.submit(
+                query,
+                VisibleRegionUtils.toPolygon(mapView.getMap().getVisibleRegion()),
+                SearchOptions(),
+                MySearchListener(mapView, applicationContext))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MapKitFactory.setApiKey("58689044-9fe3-4559-a9f3-1052dac38fb8")
         MapKitFactory.initialize(this)
+        SearchFactory.initialize(this)
+        searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.ONLINE)
         setContentView(R.layout.activity_main)
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -33,9 +48,11 @@ class MainActivity : AppCompatActivity() {
             val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             var longitude = location.longitude
             var latitude = location.latitude
-            mapView.map.move(CameraPosition(Point(latitude, longitude), 18.0F, 0.0F, 0.0F), Animation(Animation.Type.SMOOTH, 5F), null)
+            mapView.map.move(CameraPosition(Point(latitude, longitude), 14.0F, 0.0F, 0.0F), Animation(Animation.Type.LINEAR, 0F), null)
         }
 
+        submitQuery("АЗС")
+//        Log.d("myLocation", "${mapView.map.mapObjects.userData.toString()}")
 //        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 //        var longitude = location.longitude
 //        var latitude = location.latitude

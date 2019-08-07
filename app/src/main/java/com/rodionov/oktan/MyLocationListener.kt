@@ -13,7 +13,7 @@ import android.widget.TextView
 class MyLocationListener(val text: TextView): LocationListener {
 
     override fun onLocationChanged(location: Location?) {
-        Log.d("myLocation", "onLocationChanged ${"" + location?.latitude + " " + location?.longitude}")
+//        Log.d("myLocation", "onLocationChanged ${"" + location?.latitude + " " + location?.longitude}")
         text.text = "" + location?.latitude + " " + location?.longitude
     }
 
