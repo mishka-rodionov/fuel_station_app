@@ -121,4 +121,7 @@ dependencies {
     //GlideTransformations
     implementation "jp.wasabeef:glide-transformations:4.1.0"
     implementation 'jp.wasabeef:blurry:3.0.0'
+
+    //Rx
+    implementation "io.reactivex.rxjava3:rxkotlin:${versions.rx}"
 }

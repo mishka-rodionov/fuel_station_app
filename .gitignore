@@ -9,4 +9,6 @@
 /captures
 .externalNativeBuild
 .idea/*
-.idea
+.idea/
+.idea/caches
+.idea/codeStyles
