@@ -12,7 +12,7 @@ import android.widget.TextView
  */
 class MyLocationListener(val text: TextView): LocationListener {
 
-    override fun onLocationChanged(location: Location?) {
+    override fun onLocationChanged(location: Location) {
 //        Log.d("myLocation", "onLocationChanged ${"" + location?.latitude + " " + location?.longitude}")
         text.text = "" + location?.latitude + " " + location?.longitude
     }
@@ -20,9 +20,9 @@ class MyLocationListener(val text: TextView): LocationListener {
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
     }
 
-    override fun onProviderEnabled(provider: String?) {
+    override fun onProviderEnabled(provider: String) {
     }
 
-    override fun onProviderDisabled(provider: String?) {
+    override fun onProviderDisabled(provider: String) {
     }
 }
