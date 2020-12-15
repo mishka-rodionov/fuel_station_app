@@ -26,7 +26,9 @@ buildscript {
             exo_player_version     : '2.11.5',
             biometric_version      : '1.1.0-rc01',
             acra_version           : '5.3.0',
-            rx                     : '3.0.1'
+            rx_java                : '3.0.6',
+            rx_kotlin              : '3.0.1',
+            rx_android             : '3.0.0'
     ]
     repositories {
         google()
@@ -47,6 +49,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
         maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
             authentication {

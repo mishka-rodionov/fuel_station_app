@@ -1,4 +1,4 @@
-package com.rodionov.oktan
+package com.rodionov.oktan.presentation
 
 import android.location.Location
 import android.location.LocationListener

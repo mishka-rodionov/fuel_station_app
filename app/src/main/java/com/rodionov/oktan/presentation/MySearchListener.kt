@@ -1,7 +1,8 @@
-package com.rodionov.oktan
+package com.rodionov.oktan.presentation
 
 import android.content.Context
 import android.util.Log
+import com.rodionov.oktan.R
 import com.yandex.mapkit.mapview.MapView
 import com.yandex.mapkit.search.Response
 import com.yandex.mapkit.search.Session

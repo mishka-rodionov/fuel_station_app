@@ -123,5 +123,7 @@ dependencies {
     implementation 'jp.wasabeef:blurry:3.0.0'
 
     //Rx
-    implementation "io.reactivex.rxjava3:rxkotlin:${versions.rx}"
+    implementation "io.reactivex.rxjava3:rxkotlin:${versions.rx_kotlin}"
+    implementation "io.reactivex.rxjava3:rxandroid:${versions.rx_android}"
+    implementation "io.reactivex.rxjava3:rxjava:${versions.rx_java}"
 }

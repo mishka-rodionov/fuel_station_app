@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Oktanometr</string>
     <string name="mapbox_access_token">pk.eyJ1IjoibWlzaGthLXJvZGlvbm92IiwiYSI6ImNraHlxNWNiNDB2cWsycW1wbjhsYXl1aG8ifQ.lmULkEjvJUUz3ChZ-y-3sw</string>
+
+    <!--    Bottom menu labels-->
+    <string name="bottom_menu_map">Карта</string>
+    <string name="bottom_menu_fuel_station_list">Заправки</string>
+    <string name="bottom_menu_account">Профиль</string>
 </resources>

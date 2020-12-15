@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="edittext_height">48dp</dimen>
+    <dimen name="image_view_dimension">48dp</dimen>
+    <dimen name="picked_image">64dp</dimen>
+    <dimen name="dialog_card_radius">4dp</dimen>
+    <dimen name="media_image_size">80dp</dimen>
+    <dimen name="image_card_radius">4dp</dimen>
+    <dimen name="image_card_elevation">0dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="button_file_pick_height">40dp</dimen>
+    <dimen name="toolbar_height">64dp</dimen>
+    <dimen name="sub_toolbar_height">90dp</dimen>
+    <dimen name="cardview_vehicle_number_height">40dp</dimen>
+
+
+    <dimen name="default_margin_minus_18">-18dp</dimen>
+    <dimen name="default_margin_1">1dp</dimen>
+    <dimen name="default_margin_2">2dp</dimen>
+    <dimen name="default_margin_4">4dp</dimen>
+    <dimen name="default_margin_8">8dp</dimen>
+    <dimen name="default_margin_10">10dp</dimen>
+    <dimen name="default_margin_12">12dp</dimen>
+    <dimen name="default_margin_16">16dp</dimen>
+    <dimen name="default_margin_20">20dp</dimen>
+    <dimen name="default_margin_24">24dp</dimen>
+    <dimen name="default_margin_32">32dp</dimen>
+    <dimen name="default_margin_40">40dp</dimen>
+    <dimen name="default_margin_48">48dp</dimen>
+    <dimen name="default_margin_60">60dp</dimen>
+
+    <!-- Login pin -->
+    <dimen name="pin_button_size">72dp</dimen>
+    <dimen name="pin_text_size">18sp</dimen>
+    <dimen name="pin_horizontal_spacing">32dp</dimen>
+    <dimen name="pin_vertical_spacing">0dp</dimen>
+    <dimen name="pin_dot_diameter">12dp</dimen>
+    <dimen name="pin_dot_spacing">8dp</dimen>
+
+    <dimen name="find_image_button">56dp</dimen>
+
+    <dimen name="switch_track_width">36dp</dimen>
+    <dimen name="switch_track_height">25dp</dimen>
+    <dimen name="switch_radius">50dp</dimen>
+    <dimen name="switch_selector_padding">2dp</dimen>
+    <dimen name="switch_stroke_height">0dp</dimen>
+
+</resources>
