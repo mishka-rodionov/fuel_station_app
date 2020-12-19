@@ -7,7 +7,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class FuelStationApp: Application() {
+class FuelStationApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -19,7 +19,8 @@ class FuelStationApp: Application() {
     }
 
     companion object {
-        @Volatile lateinit var context: Context
+        @Volatile
+        lateinit var context: Context
     }
 
 }

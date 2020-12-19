@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".app.FuelStationApp"
         android:allowBackup="true"
         android:icon="@mipmap/iconfinder_gasolin"
         android:label="@string/app_name"

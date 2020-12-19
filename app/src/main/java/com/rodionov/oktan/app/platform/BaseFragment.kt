@@ -55,12 +55,13 @@ abstract class BaseFragment(@LayoutRes private val contentLayoutId: Int) :
 //        }
 
 //        setToolbarTitle()
-        initViews()
+        initViews(savedInstanceState)
         observeBaseLiveData()
     }
 
 
-    abstract fun initViews()
+    abstract fun initViews(savedInstanceState: Bundle? = null)
+
 
     override fun onStop() {
         super.onStop()
