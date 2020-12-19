@@ -7,13 +7,13 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class FuelApp: Application() {
+class FuelStationApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidLogger()
-            androidContext(this@FuelApp)
+            androidContext(this@FuelStationApp)
             modules(listOf(appModule, networkModule, databaseModule, viewModelModule, repositoryModule))
         }
     }

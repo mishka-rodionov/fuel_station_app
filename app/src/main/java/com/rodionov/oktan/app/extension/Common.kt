@@ -13,7 +13,9 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.webkit.MimeTypeMap
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
-import com.rodionov.oktan.app.FuelApp
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.rodionov.oktan.app.FuelStationApp
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.File
@@ -79,7 +81,7 @@ fun <T> Bundle.put(key: String, value: T) {
 val Uri.realName: String get() {
     try {
         val projection = arrayOf(OpenableColumns.DISPLAY_NAME)
-        FuelApp.context.contentResolver
+        FuelStationApp.context.contentResolver
             .query(this, projection, null, null, null)?.use { cursor ->
                 if (cursor.moveToFirst()) {
                     val index = cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME)
@@ -91,7 +93,7 @@ val Uri.realName: String get() {
 }
 
 val Uri.realPath: String? get() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(FuelApp.context, this)) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(FuelStationApp.context, this)) {
         val docId = DocumentsContract.getDocumentId(this)
         when {
             isExternalStorageDocument -> {
@@ -135,7 +137,7 @@ fun Uri.getDataColumn(selection: String? = null, selectionArgs: Array<String>? =
     val column = "_data"
     val projection = arrayOf(column)
     try {
-        FuelApp.context.contentResolver.query(this, projection, selection, selectionArgs, null)?.use { cursor ->
+        FuelStationApp.context.contentResolver.query(this, projection, selection, selectionArgs, null)?.use { cursor ->
             if (cursor.moveToFirst()) {
                 val index = cursor.getColumnIndexOrThrow(column)
                 val value = cursor.getString(index)
@@ -151,7 +153,7 @@ fun Uri.getDataColumn(selection: String? = null, selectionArgs: Array<String>? =
 
 val Uri.realSize: Long get() {
     val projection = arrayOf(OpenableColumns.SIZE)
-    FuelApp.context
+    FuelStationApp.context
         .contentResolver.query(this, projection, null, null, null)?.use { cursor ->
             if (cursor.moveToFirst()) {
                 val index = cursor.getColumnIndexOrThrow(OpenableColumns.SIZE)
@@ -171,7 +173,7 @@ val Uri.mediaType: MediaType? get() {
 }
 
 val Uri.sha256: String get() {
-    FuelApp.context.contentResolver.openInputStream(this)?.use {
+    FuelStationApp.context.contentResolver.openInputStream(this)?.use {
         val digest = MessageDigest.getInstance("SHA-256")
         val bytes = digest.digest(it.readBytes().toString(charset("ISO-8859-1")).toByteArray(charset("UTF-8")))
         val hexString = StringBuffer()
@@ -191,3 +193,6 @@ fun Resources.getVectorDrawable(resource: Int, theme: Resources.Theme?) =
     } else {
         VectorDrawableCompat.create(this, resource, theme)
     }
+
+inline fun <reified T> Gson.fromJson(json: String) =
+        this.fromJson<T>(json, object : TypeToken<T>() {}.type)
