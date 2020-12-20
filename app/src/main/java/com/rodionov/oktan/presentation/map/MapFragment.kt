@@ -9,6 +9,7 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.rodionov.oktan.R
 import com.rodionov.oktan.app.platform.BaseFragment
 import com.rodionov.oktan.app.platform.BaseViewModel
+import com.rodionov.oktan.presentation.common.CreateFuelStationDialog
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,6 +31,7 @@ class MapFragment: BaseFragment(R.layout.fragment_map) {
             mapboxMap.setStyle(Style.MAPBOX_STREETS) {
                 mapboxMap.addOnMapClickListener { point ->
                     Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
+                    CreateFuelStationDialog().show(parentFragmentManager, "")
                     true
                 }
 

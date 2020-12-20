@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_margin_16">
+
+    <Button
+        android:id="@+id/btnDialogCancel"
+        style="@style/Button"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:layout_marginEnd="@dimen/default_margin_16"
+        android:text="Отмена"
+        app:layout_constraintEnd_toStartOf="@+id/btnDialogOk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLatitude" />
+
+    <Button
+        android:id="@+id/btnDialogOk"
+        style="@style/Button"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/default_margin_16"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:text="OK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDialogCancel"
+        app:layout_constraintTop_toBottomOf="@id/tvLatitude" />
+
+    <TextView
+        android:id="@+id/tvLatitude"
+        style="@style/Text.16"
+        app:layout_constraintEnd_toStartOf="@+id/tvLongitude"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="53.5462313354" />
+
+    <TextView
+        android:id="@+id/tvLongitude"
+        style="@style/Text.16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvLatitude"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="53.5462313354" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
