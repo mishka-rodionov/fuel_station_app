@@ -31,7 +31,7 @@ class MapFragment: BaseFragment(R.layout.fragment_map) {
             mapboxMap.setStyle(Style.MAPBOX_STREETS) {
                 mapboxMap.addOnMapClickListener { point ->
                     Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
-                    CreateFuelStationDialog().show(parentFragmentManager, "")
+                    CreateFuelStationDialog().show(childFragmentManager, "123")
                     true
                 }
 
