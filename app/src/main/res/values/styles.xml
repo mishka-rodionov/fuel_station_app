@@ -46,6 +46,19 @@
         <item name="strokeColor">@color/colorPrimary</item>
     </style>
 
+    <style name="AppTheme.Dialog.Custom" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertDialog.ButtonColor</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertDialog.ButtonColor</item>
+    </style>
+
+    <style name="AlertDialog.ButtonColor" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextInputLayoutOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

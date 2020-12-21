@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.rodionov.oktan.app.extension.fromJson
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
 import com.rodionov.oktan.data.entities.model.GasolineType
 
@@ -30,6 +31,12 @@ class FuelStationConverter {
 
     @TypeConverter
     fun toFuelStationServices(services: String?) = gson.fromJson<List<FuelStationServices>?>(services.orEmpty())
+
+    @TypeConverter
+    fun fromCoordinates(coordinates: Coordinates): String? = gson.toJson(coordinates)
+
+    @TypeConverter
+    fun toCoordinates(coordinates: String) = gson.fromJson<Coordinates>(coordinates)
 
 
 }

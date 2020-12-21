@@ -26,20 +26,25 @@ class MapFragment: BaseFragment(R.layout.fragment_map) {
 
     override fun initViews(savedInstanceState: Bundle?) {
         mapView.onCreate(savedInstanceState)
-        mapView?.getMapAsync { mapboxMap ->
 
+        mapView?.getMapAsync { mapboxMap ->
             mapboxMap.setStyle(Style.MAPBOX_STREETS) {
                 mapboxMap.addOnMapClickListener { point ->
                     Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
                     CreateFuelStationDialog().show(childFragmentManager, "123")
                     true
                 }
-
-// Map is set up and the style has loaded. Now you can add data or make other map adjustments
-
-
             }
+
+            mapboxMap.addOnMapLongClickListener { point ->
+                Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
+                CreateFuelStationDialog().show(childFragmentManager, "123")
+                true
+            }
+
+            mapboxMap.markers
         }
+
     }
 
 }
