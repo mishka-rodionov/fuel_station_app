@@ -1,6 +1,5 @@
 package com.rodionov.oktan.presentation.common
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,9 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.rodionov.oktan.R
 import com.rodionov.oktan.app.utils.Logger.TAG
+import com.rodionov.oktan.data.entities.model.*
 import kotlinx.android.synthetic.main.dialog_fragment_create_fuel_station.*
 
-class CreateFuelStationDialog: DialogFragment() {
+class CreateFuelStationDialog(
+        private val coordinates: Coordinates,
+        private val createGasolineStation: (GasolineStation) -> Unit
+) : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate: class = ${this::class.java.simpleName}")
         super.onCreate(savedInstanceState)
@@ -25,8 +28,19 @@ class CreateFuelStationDialog: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tvLatitude.text = "akjsdajsdahsjd"
-        tvLongitude.text = "kajsdhkasjhd"
+        tvLatitude.text = coordinates.latitude.toString()
+        tvLongitude.text = coordinates.longitude.toString()
         btnDialogCancel.setOnClickListener { dismiss() }
+        btnDialogOk.setOnClickListener {
+            val gasolineStation = GasolineStation(
+                    listOf(GasolineType(name = GasolineName.AI95, pricePerLiter = 45.0F, realOktanNumber = 93F))
+            ).apply {
+                type = FuelStationType.GASOLINE
+                services = listOf(FuelStationServices.CAFE, FuelStationServices.REFUELING_SERVICES, FuelStationServices.CAR_WASH)
+                coordinates = this@CreateFuelStationDialog.coordinates
+            }
+            createGasolineStation.invoke(gasolineStation)
+            dismiss()
+        }
     }
 }

@@ -9,11 +9,13 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.rodionov.oktan.R
 import com.rodionov.oktan.app.platform.BaseFragment
 import com.rodionov.oktan.app.platform.BaseViewModel
+import com.rodionov.oktan.data.entities.model.Coordinates
+import com.rodionov.oktan.data.entities.model.GasolineStation
 import com.rodionov.oktan.presentation.common.CreateFuelStationDialog
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MapFragment: BaseFragment(R.layout.fragment_map) {
+class MapFragment : BaseFragment(R.layout.fragment_map) {
 
     private val viewModel: MapViewModel by viewModel()
 
@@ -29,22 +31,26 @@ class MapFragment: BaseFragment(R.layout.fragment_map) {
 
         mapView?.getMapAsync { mapboxMap ->
             mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-                mapboxMap.addOnMapClickListener { point ->
-                    Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
-                    CreateFuelStationDialog().show(childFragmentManager, "123")
-                    true
-                }
+//                mapboxMap.addOnMapClickListener { point ->
+//                    Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
+//                    CreateFuelStationDialog().show(childFragmentManager, "123")
+//                    true
+//                }
             }
 
             mapboxMap.addOnMapLongClickListener { point ->
                 Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
-                CreateFuelStationDialog().show(childFragmentManager, "123")
+                CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
                 true
             }
 
-            mapboxMap.markers
         }
 
+    }
+
+
+    private fun handleCreateGasolineStation(gasolineStation: GasolineStation) {
+        viewModel.createGasolineStation(gasolineStation)
     }
 
 }

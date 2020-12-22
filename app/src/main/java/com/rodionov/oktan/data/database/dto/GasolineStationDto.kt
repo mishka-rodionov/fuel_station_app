@@ -11,7 +11,7 @@ import com.rodionov.oktan.data.entities.model.GasolineType
 @Entity(tableName = "gasoline_station")
 @TypeConverters(FuelStationConverter::class)
 data class GasolineStationDto(
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         val id: Int = 0,
         val services: List<FuelStationServices>? = null,
         val brand: String? = null,

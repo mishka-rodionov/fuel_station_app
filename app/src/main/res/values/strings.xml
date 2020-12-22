@@ -2,6 +2,15 @@
     <string name="app_name">Oktanometr</string>
     <string name="mapbox_access_token">pk.eyJ1IjoibWlzaGthLXJvZGlvbm92IiwiYSI6ImNraHlxNWNiNDB2cWsycW1wbjhsYXl1aG8ifQ.lmULkEjvJUUz3ChZ-y-3sw</string>
 
+    <!--    Buttons-->
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_add">Добавить</string>
+
+    <!--    Labels-->
+    <string name="label_latitude">Широта</string>
+    <string name="label_longitude">Долгота</string>
+
     <!--    Bottom menu labels-->
     <string name="bottom_menu_map">Карта</string>
     <string name="bottom_menu_fuel_station_list">Заправки</string>
