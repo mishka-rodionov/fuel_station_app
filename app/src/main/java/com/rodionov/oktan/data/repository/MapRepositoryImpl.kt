@@ -35,8 +35,11 @@ class MapRepositoryImpl(
     }
 
     override fun getAllGasolineStation(onSuccess: (List<GasolineStation>) -> Unit, onError: (Throwable) -> Unit) {
-        val disposable = Observable.create<List<GasolineStationDto>> {
-            gasolineStationDao.getAllGasolineStations()/*.map(FuelStationMapper::toGasolineStationModel)*/
+        Log.d(TAG, "getAllGasolineStation: ")
+        Observable.create<List<GasolineStationDto>> {
+            val list = gasolineStationDao.getAllGasolineStations()/*.map(FuelStationMapper::toGasolineStationModel)*/
+            Log.d(TAG, "getAllGasolineStation: size = ${list.size}")
+            it.onNext(list)
         }
                 .subscribeOn(Schedulers.newThread())
                 .map {

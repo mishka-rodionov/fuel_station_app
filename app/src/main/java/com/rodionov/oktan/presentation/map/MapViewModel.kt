@@ -18,10 +18,12 @@ class MapViewModel(
     }
 
     fun getAllGasolineStation() {
+        Log.d(TAG, "getAllGasolineStation: ")
         mapRepository.getAllGasolineStation(onSuccess = ::handleShowGasolineStation, onError = ::handleError)
     }
 
     private fun handleShowGasolineStation(stations: List<GasolineStation>) {
+        Log.d(TAG, "handleShowGasolineStation: ")
         this.stations.value = stations
     }
 
