@@ -81,6 +81,7 @@ dependencies {
     implementation "androidx.room:room-runtime:${versions.room_version}"
     kapt "androidx.room:room-compiler:${versions.room_version}"
     implementation "androidx.room:room-ktx:${versions.room_version}"
+    implementation "androidx.room:room-rxjava3:${versions.room_version}"
 
     //Kotlin
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinx_coroutines}"
