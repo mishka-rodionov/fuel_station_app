@@ -2,12 +2,14 @@ package com.rodionov.oktan.presentation.map
 
 import android.os.Bundle
 import android.util.Log
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.Style
 import com.rodionov.oktan.R
+import com.rodionov.oktan.app.extension.observe
 import com.rodionov.oktan.app.platform.BaseFragment
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.GasolineStation
@@ -27,6 +29,7 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
+        observe(viewModel.stations, ::showGasolineStation)
         mapView.onCreate(savedInstanceState)
 
         mapView?.getMapAsync { mapboxMap ->
@@ -47,6 +50,12 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
         }
 
+    }
+
+    private fun showGasolineStation(stations: List<GasolineStation>?) {
+        val listOfFeature = stations?.map {
+            Point.fromLngLat(it.coordinates?.longitude ?: 0.0, it.coordinates?.latitude ?: 0.0)
+        }
     }
 
 

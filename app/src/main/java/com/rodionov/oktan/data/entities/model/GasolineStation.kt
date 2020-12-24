@@ -1,5 +1,9 @@
 package com.rodionov.oktan.data.entities.model
 
 class GasolineStation(
+        type: FuelStationType = FuelStationType.GASOLINE,
+        services: List<FuelStationServices>?,
+        coordinates: Coordinates?,
+        brand: String?,
         val gasolineTypes: List<GasolineType>? = null
-): FuelStation()
+): FuelStation(type = type, services = services, coordinates = coordinates, brand = brand)

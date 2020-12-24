@@ -3,6 +3,7 @@ package com.rodionov.oktan.data.repository
 import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.domain.MapRepository
@@ -31,5 +32,28 @@ class MapRepositoryImpl(
                         }
                 )
 
+    }
+
+    override fun getAllGasolineStation(onSuccess: (List<GasolineStation>) -> Unit, onError: (Throwable) -> Unit) {
+        val disposable = Observable.create<List<GasolineStationDto>> {
+            gasolineStationDao.getAllGasolineStations()/*.map(FuelStationMapper::toGasolineStationModel)*/
+        }
+                .subscribeOn(Schedulers.newThread())
+                .map {
+                    it.map(FuelStationMapper::toGasolineStationModel)
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onNext = {
+                            it.forEach { station ->
+                                Log.d(TAG, "getAllGasolineStation: coordinates = ${station.coordinates}")
+                                onSuccess.invoke(it)
+                            }
+                        },
+                        onError = {
+                            Log.d(TAG, "getAlGasolineStation: cause = ${it.cause}")
+                            onError.invoke(it)
+                        }
+                )
     }
 }

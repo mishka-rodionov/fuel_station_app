@@ -14,4 +14,13 @@ object FuelStationMapper {
         )
     }
 
+    fun toGasolineStationModel(gasolineStationDto: GasolineStationDto) = gasolineStationDto.run {
+        GasolineStation(
+                services = services,
+                brand = brand,
+                coordinates = coordinates,
+                gasolineTypes = gasolineTypes,
+        )
+    }
+
 }
