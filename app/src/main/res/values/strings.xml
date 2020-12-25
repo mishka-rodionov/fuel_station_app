@@ -7,6 +7,9 @@
     <string name="btn_cancel">Отмена</string>
     <string name="btn_add">Добавить</string>
 
+    <!--    Hint-->
+    <string name="hint_brand">Торговая марка</string>
+
     <!--    Labels-->
     <string name="label_latitude">Широта</string>
     <string name="label_longitude">Долгота</string>

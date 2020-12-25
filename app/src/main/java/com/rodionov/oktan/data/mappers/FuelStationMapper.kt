@@ -8,7 +8,7 @@ object FuelStationMapper {
     fun toGasolineStationDto(gasolineStation: GasolineStation) = gasolineStation.run {
         GasolineStationDto(
                 services = this.services,
-                brand = "Lukoil",
+                brand = this.brand,
                 gasolineTypes = this.gasolineTypes,
                 coordinates = this.coordinates
         )
