@@ -12,6 +12,7 @@ import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.constants.MapboxConstants
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
@@ -110,10 +111,11 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
     private fun setCameraPosition() = CameraPosition.Builder()
             .target(LatLng(51.607550, 45.93207520))
-            .zoom(10.0)
-            .tilt(20.0)
+            .zoom(25.5)
+            .tilt(30.0)
             .build()
 
+    @Suppress("checkPermission")
     @NeedsPermission (Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     fun enableLocationComponent(loadedMapStyle: Style) {
         // Check if permissions are enabled and if not request

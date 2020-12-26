@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Oktanometr</string>
+    <string name="app_name">Заправки</string>
     <string name="mapbox_access_token">pk.eyJ1IjoibWlzaGthLXJvZGlvbm92IiwiYSI6ImNraHlxNWNiNDB2cWsycW1wbjhsYXl1aG8ifQ.lmULkEjvJUUz3ChZ-y-3sw</string>
 
     <!--    Buttons-->
