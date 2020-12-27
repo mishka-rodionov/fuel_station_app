@@ -2,6 +2,7 @@ package com.rodionov.oktan.presentation.map
 
 import android.Manifest
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -52,7 +53,7 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
     }
 
     override fun initViews(savedInstanceState: Bundle?) {
-        observe(viewModel.stations, ::showGasolineStation)
+        setupObservers()
         mapView.onCreate(savedInstanceState)
 
         mapView?.getMapAsync { mapboxMap ->
@@ -72,11 +73,25 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
                 CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
                 true
             }
-            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition()), 2000)
-
+//            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition()), 2000)
+            requestLocationWithPermissionCheck()
             viewModel.getAllGasolineStation()
         }
 
+    }
+
+    @NeedsPermission(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    fun requestLocation() {
+        viewModel.getCurrentLocation()
+    }
+
+    private fun setupObservers() {
+        observe(viewModel.stations, ::showGasolineStation)
+        observe(viewModel.currentLocation, ::animateCameraToCurrentLocation)
+    }
+
+    private fun animateCameraToCurrentLocation(location: Location?) {
+        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition(location = location)), 2000)
     }
 
     private fun showGasolineStation(stations: List<GasolineStation>?) {
@@ -109,10 +124,10 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
         viewModel.createGasolineStation(gasolineStation)
     }
 
-    private fun setCameraPosition() = CameraPosition.Builder()
-            .target(LatLng(51.607550, 45.93207520))
-            .zoom(25.5)
-            .tilt(30.0)
+    private fun setCameraPosition(location: Location?) = CameraPosition.Builder()
+            .target(LatLng(location?.latitude ?: 25.0, location?.longitude ?: 25.0))
+            .zoom(15.5)
+            .tilt(10.0)
             .build()
 
     @Suppress("checkPermission")
