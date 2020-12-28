@@ -4,8 +4,10 @@ import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.entities.model.FuelStation
 import com.rodionov.oktan.data.entities.model.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
+import com.rodionov.oktan.data.network.api.FuelStationApi
 import com.rodionov.oktan.domain.MapRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -13,7 +15,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MapRepositoryImpl(
-        private val gasolineStationDao: GasolineStationDao
+        private val gasolineStationDao: GasolineStationDao,
+        private val fuelStationsApi: FuelStationApi
 ) : MapRepository {
 
     override fun createGasolineStation(gasolineStation: GasolineStation) {
@@ -54,5 +57,18 @@ class MapRepositoryImpl(
                             onError.invoke(it)
                         }
                 )
+    }
+
+    override fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit) {
+        fuelStationsApi.getFuelStations().subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).map(FuelStationMapper::toGasolineStationModel).subscribeBy(
+                onNext = {
+                    Log.d(TAG, "getFuelStations: station = $it")
+                    onSuccess.invoke(it)
+                },
+                onError = {
+                    Log.d(TAG, "getFuelStations: cause = ${it.cause}")
+                    onError.invoke(it)
+                }
+        )
     }
 }

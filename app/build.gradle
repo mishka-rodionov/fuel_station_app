@@ -33,13 +33,24 @@ android {
     }
 
     buildTypes {
+        def BASE_URL = "BASE_URL"
+//        def REALM_SCHEMA_VERSION = "REALM_SCHEMA_VERSION"
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", BASE_URL, '"https://google.com"'
+//            buildConfigField "long", REALM_SCHEMA_VERSION, "1"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "fuel-station-${variant.versionName}.apk"
+            }
+        }
+        debug {
+            debuggable true
+            buildConfigField "String", BASE_URL, '"http://192.168.1.49:8080"'
+//            buildConfigField "long", REALM_SCHEMA_VERSION, "1"
         }
     }
 }
@@ -105,6 +116,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:${versions.retrofit}"
     implementation "com.squareup.okhttp3:logging-interceptor:4.0.0"
     implementation "com.facebook.stetho:stetho-okhttp3:1.5.1"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit}"
 
     //RecyclerViewDelegates
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:${versions.recyclerview_delegates}"

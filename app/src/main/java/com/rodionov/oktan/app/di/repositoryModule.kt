@@ -5,5 +5,5 @@ import com.rodionov.oktan.domain.MapRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<MapRepository> { MapRepositoryImpl(get()) }
+    single<MapRepository> { MapRepositoryImpl(get(), get()) }
 }

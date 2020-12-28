@@ -15,7 +15,7 @@ buildscript {
             lifecycle_extensions   : '2.2.0',
             lifecycle_viewmodel_ktx: '2.2.0',
             lifecycle_livedata_ktx : '2.2.0',
-            retrofit               : '2.7.2',
+            retrofit               : '2.9.0',
             recyclerview_delegates : '4.3.0',
             permissionsdispatcher  : '4.7.0',
             glide                  : '4.11.0',
