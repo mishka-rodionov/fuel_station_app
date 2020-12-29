@@ -1,8 +1,10 @@
 package com.rodionov.oktan.app.platform
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rodionov.oktan.app.utils.Logger.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,6 +19,10 @@ abstract class BaseViewModel : ViewModel() {
 
     fun onExit() {
         navigate(NavigationEvent.Exit)
+    }
+
+    fun onError(throwable: Throwable) {
+        Log.d(TAG, "onError: cause = ${throwable.cause}")
     }
 
     protected fun handleState(state: State) {
