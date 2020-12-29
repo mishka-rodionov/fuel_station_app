@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.rodionov.oktan.R
 import com.rodionov.oktan.app.platform.BaseFragment
 
-class FuelStationListFragment: BaseFragment(R.layout.fragment_fuel_station_list) {
+class FuelStationListFragment: BaseFragment(R.layout.fragment_fuel_stations) {
 
     override fun initViews(savedInstanceState: Bundle?) {
 
