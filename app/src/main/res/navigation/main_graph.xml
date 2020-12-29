@@ -14,7 +14,7 @@
         android:id="@+id/fuelStationListFragment"
         android:name="com.rodionov.oktan.presentation.fuel_station_list.FuelStationListFragment"
         android:label="FuelStationListFragment"
-        tools:layout="@layout/fragment_fuel_station_list" />
+        tools:layout="@layout/fragment_fuel_stations" />
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.rodionov.oktan.presentation.map.MapFragment"
