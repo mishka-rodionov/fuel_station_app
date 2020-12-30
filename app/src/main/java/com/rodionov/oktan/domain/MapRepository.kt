@@ -5,8 +5,9 @@ import com.rodionov.oktan.data.entities.model.GasolineStation
 
 interface MapRepository {
 
-    fun createGasolineStation(gasolineStation: GasolineStation)
+    fun createLocalGasolineStation(gasolineStation: GasolineStation)
     fun getAllGasolineStation(onSuccess: (List<GasolineStation>) -> Unit, onError: (Throwable) -> Unit)
     fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit)
+    fun createRemoteGasolineStation(gasolineStation: GasolineStation, onSuccess: (GasolineStation) -> Unit, onError: (Throwable) -> Unit)
 
 }

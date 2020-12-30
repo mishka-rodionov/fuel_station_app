@@ -23,7 +23,7 @@ class MapViewModel(
     }
 
     fun createGasolineStation(gasolineStation: GasolineStation) {
-        mapRepository.createGasolineStation(gasolineStation = gasolineStation)
+        mapRepository.createRemoteGasolineStation(gasolineStation = gasolineStation, onSuccess = {}, onError = {})
     }
 
     fun getAllGasolineStation() {

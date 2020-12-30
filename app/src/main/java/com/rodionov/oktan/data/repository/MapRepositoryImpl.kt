@@ -19,7 +19,7 @@ class MapRepositoryImpl(
         private val fuelStationsApi: FuelStationApi
 ) : MapRepository {
 
-    override fun createGasolineStation(gasolineStation: GasolineStation) {
+    override fun createLocalGasolineStation(gasolineStation: GasolineStation) {
         Log.d(TAG, "createGasolineStation: ")
         Observable.create<Unit> {
             gasolineStationDao.setGasolineStation(FuelStationMapper.toGasolineStationDto(gasolineStation = gasolineStation))
@@ -34,7 +34,23 @@ class MapRepositoryImpl(
                             Log.d(TAG, "createGasolineStation: cause = ${it.cause}")
                         }
                 )
+    }
 
+    override fun createRemoteGasolineStation(gasolineStation: GasolineStation, onSuccess: (GasolineStation) -> Unit, onError: (Throwable) -> Unit) {
+        fuelStationsApi.setGasolineStation(gasolineStationRequest = FuelStationMapper.toGasolineStationRequest(gasolineStation = gasolineStation))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        onNext = {
+                            Log.d(TAG, "createRemoteGasolineStation: successfully create remote gasoline station")
+                            onSuccess.invoke(FuelStationMapper.toGasolineStationModel(gasolineStation = it))
+                            createLocalGasolineStation(FuelStationMapper.toGasolineStationModel(gasolineStation = it))
+                        },
+                        onError = {
+                            Log.d(TAG, "createGasolineStation: cause = ${it.cause}")
+                            onError.invoke(it)
+                        }
+                )
     }
 
     override fun getAllGasolineStation(onSuccess: (List<GasolineStation>) -> Unit, onError: (Throwable) -> Unit) {
