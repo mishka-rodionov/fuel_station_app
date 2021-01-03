@@ -3,6 +3,13 @@ package com.rodionov.oktan.presentation.main
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -12,6 +19,7 @@ import com.rodionov.oktan.app.platform.BaseActivity
 import com.yandex.mapkit.search.SearchManager
 import com.yandex.mapkit.search.Session
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : BaseActivity(R.layout.activity_main), MapboxMap.OnMapClickListener {
 
@@ -31,9 +39,22 @@ class MainActivity : BaseActivity(R.layout.activity_main), MapboxMap.OnMapClickL
 
     }
 
+    private fun setupBottomNavMenu(navController: NavController) {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavView)
+        bottomNav?.setupWithNavController(navController)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("LOG_TAG", "onCreate: ")
+
+        val host: NavHostFragment = supportFragmentManager
+                .findFragmentById(R.id.mainFragmentContainer) as NavHostFragment? ?: return
+
+        // Set up Action Bar
+        val navController = host.navController
+        setupBottomNavMenu(navController)
 //        Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
 //
 //        setContentView(R.layout.activity_main)
@@ -72,8 +93,6 @@ class MainActivity : BaseActivity(R.layout.activity_main), MapboxMap.OnMapClickL
 //        }
 //
 //        submitQuery("АЗС")
-
-
 
 
 //        Log.d("myLocation", "${mapView.map.mapObjects.userData.toString()}")

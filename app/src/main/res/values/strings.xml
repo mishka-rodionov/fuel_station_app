@@ -18,4 +18,8 @@
     <string name="bottom_menu_map">Карта</string>
     <string name="bottom_menu_fuel_station_list">Заправки</string>
     <string name="bottom_menu_account">Профиль</string>
+
+    <!--    Patterns-->
+    <string name="pattern_distance">$1%s $2%s</string>
+    <string name="pattern_price">$1%s $2%s</string>
 </resources>

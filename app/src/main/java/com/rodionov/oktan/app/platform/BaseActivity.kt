@@ -36,11 +36,6 @@ abstract class BaseActivity(@LayoutRes private val layout: Int) : AppCompatActiv
 
     abstract fun initToolbar()
 
-    protected fun setupNavigationMenu(navController: NavController, navViewId: Int) {
-        val sideNavView = findViewById<NavigationView>(navViewId)
-        sideNavView?.setupWithNavController(navController)
-    }
-
     protected fun setupActionBar(
         navController: NavController,
         appBarConfig: AppBarConfiguration

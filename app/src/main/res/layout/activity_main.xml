@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            android:id="@+id/toolbarAccount"
+            android:id="@+id/toolbarMain"
             layout="@layout/toolbar" />
 
     </LinearLayout>
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/llToolbarContainerAccount">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/accountFragmentContainer"
+            android:id="@+id/mainFragmentContainer"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
