@@ -37,4 +37,11 @@
         android:layout_marginBottom="@dimen/default_margin_4"
         app:layout_constraintTop_toBottomOf="@id/tvBrand"/>
 
+    <com.rodionov.oktan.presentation.common.view.FuelTypeView
+        android:layout_width="@dimen/default_margin_24"
+        android:layout_height="@dimen/default_margin_24"
+        android:layout_marginTop="@dimen/default_margin_8"
+        app:layout_constraintTop_toBottomOf="@id/divider1"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

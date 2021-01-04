@@ -1,4 +1,4 @@
-package com.rodionov.oktan.presentation.common
+package com.rodionov.oktan.presentation.common.dialog
 
 import android.os.Bundle
 import android.util.Log
