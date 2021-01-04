@@ -48,7 +48,6 @@ class FuelTypeView(context: Context): @JvmOverloads View(context) {
                 height.toFloat() - strokeWidth /2)
 
         canvas?.drawArc(background, 0f, 360f, false, backgroundPaint)
-        canvas?.drawArc(background, -90f, sweepAngle, false, foregroundPaint)
     }
 
 }
