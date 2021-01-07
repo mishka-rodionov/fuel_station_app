@@ -6,7 +6,7 @@ import com.rodionov.oktan.data.entities.model.FuelStationServices
 import com.rodionov.oktan.data.entities.model.GasolineType
 
 data class GasolineStationResponse(
-        @SerializedName("gs_id")
+        @SerializedName("id")
         val gs_id: String? = null,
         @SerializedName("services")
         val services: List<FuelStationServices>? = null,

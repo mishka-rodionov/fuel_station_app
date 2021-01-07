@@ -3,7 +3,6 @@ package com.rodionov.oktan.data.repository
 import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.FuelStation
 import com.rodionov.oktan.data.entities.model.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
@@ -20,7 +19,6 @@ class MapRepositoryImpl(
 ) : MapRepository {
 
     override fun createLocalGasolineStation(gasolineStation: GasolineStation) {
-        Log.d(TAG, "createGasolineStation: ")
         Observable.create<Unit> {
             gasolineStationDao.setGasolineStation(FuelStationMapper.toGasolineStationDto(gasolineStation = gasolineStation))
         }
@@ -42,12 +40,10 @@ class MapRepositoryImpl(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
-                            Log.d(TAG, "createRemoteGasolineStation: successfully create remote gasoline station")
                             onSuccess.invoke(FuelStationMapper.toGasolineStationModel(gasolineStation = it))
                             createLocalGasolineStation(FuelStationMapper.toGasolineStationModel(gasolineStation = it))
                         },
                         onError = {
-                            Log.d(TAG, "createGasolineStation: cause = ${it.cause}")
                             onError.invoke(it)
                         }
                 )

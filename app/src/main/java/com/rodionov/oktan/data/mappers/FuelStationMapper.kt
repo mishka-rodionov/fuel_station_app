@@ -10,6 +10,7 @@ object FuelStationMapper {
 
     fun toGasolineStationDto(gasolineStation: GasolineStation) = gasolineStation.run {
         GasolineStationDto(
+                gs_id = this.gs_id,
                 services = this.services,
                 brand = this.brand,
                 gasolineTypes = this.gasolineTypes,
