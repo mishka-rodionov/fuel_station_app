@@ -7,7 +7,7 @@ import com.rodionov.oktan.data.entities.model.GasolineType
 
 data class GasolineStationResponse(
         @SerializedName("id")
-        val gs_id: String? = null,
+        val id: String,
         @SerializedName("services")
         val services: List<FuelStationServices>? = null,
         @SerializedName("coordinates")
@@ -15,5 +15,10 @@ data class GasolineStationResponse(
         @SerializedName("brand")
         val brand: String? = null,
         @SerializedName("gasoline_types")
-        val gasolineTypes: List<GasolineType>? = null
+        val gasolineTypes: List<GasolineType>? = null,
+        @SerializedName("date_of_creation")
+        val dateOfCreation: Long? = null,
+        @SerializedName("creator_id")
+        val creatorId: String? = null
+
 )

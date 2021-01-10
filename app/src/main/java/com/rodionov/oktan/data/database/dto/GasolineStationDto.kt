@@ -12,11 +12,9 @@ import com.rodionov.oktan.data.entities.model.GasolineType
 @Entity(tableName = "gasoline_station")
 @TypeConverters(FuelStationConverter::class)
 data class GasolineStationDto(
-        @PrimaryKey(autoGenerate = true)
+        @PrimaryKey
         @ColumnInfo(name = "id")
-        val id: Int = 0,
-        @ColumnInfo(name = "gs_id")
-        val gs_id: String? = null,
+        val id: String,
         @ColumnInfo(name = "services")
         val services: List<FuelStationServices>? = null,
         @ColumnInfo(name = "brand")
@@ -24,5 +22,9 @@ data class GasolineStationDto(
         @ColumnInfo(name = "gasoline_types")
         val gasolineTypes: List<GasolineType>? = null,
         @ColumnInfo(name = "coordinates")
-        val coordinates: Coordinates? = null
+        val coordinates: Coordinates? = null,
+        @ColumnInfo(name = "date_of_creation")
+        val dateOfCreation: String? = null,
+        @ColumnInfo(name = "creator_id")
+        val creatorId: String? = null
 )

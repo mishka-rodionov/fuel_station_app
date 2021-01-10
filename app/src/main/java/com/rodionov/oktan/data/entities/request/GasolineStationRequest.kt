@@ -13,5 +13,7 @@ data class GasolineStationRequest(
         @SerializedName("brand")
         val brand: String? = null,
         @SerializedName("gasoline_types")
-        val gasolineTypes: List<GasolineType>? = null
+        val gasolineTypes: List<GasolineType>? = null,
+        @SerializedName("creator_id")
+        val creatorId: String? = null
 )

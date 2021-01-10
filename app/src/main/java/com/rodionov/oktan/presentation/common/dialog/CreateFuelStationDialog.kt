@@ -34,11 +34,14 @@ class CreateFuelStationDialog(
         btnDialogOk.setOnClickListener {
             if (!validateBrand()) {
                 val gasolineStation = GasolineStation(
+                        id = "mobile_id",
                         type = FuelStationType.GASOLINE,
                         services = listOf(FuelStationServices.CAFE, FuelStationServices.REFUELING_SERVICES, FuelStationServices.CAR_WASH),
                         coordinates = this@CreateFuelStationDialog.coordinates,
                         brand = etBrand.text.toString(),
-                        gasolineTypes = listOf(GasolineType(name = GasolineName.AI95, pricePerLiter = 45.0F, realOktanNumber = 93F))
+                        gasolineTypes = listOf(GasolineType(name = GasolineName.AI95, pricePerLiter = 45.0F, realOktanNumber = 93F)),
+                        dateOfCreation = 0L,
+                        creatorId = "mobile_user"
                 )
                 createGasolineStation.invoke(gasolineStation)
                 dismiss()

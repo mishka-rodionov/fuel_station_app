@@ -7,7 +7,7 @@ interface MapRepository {
 
     fun createLocalGasolineStation(gasolineStation: GasolineStation)
     fun getAllGasolineStation(onSuccess: (List<GasolineStation>) -> Unit, onError: (Throwable) -> Unit)
-    fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit)
+//    fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit)
     fun createRemoteGasolineStation(gasolineStation: GasolineStation, onSuccess: (GasolineStation) -> Unit, onError: (Throwable) -> Unit)
 
 }

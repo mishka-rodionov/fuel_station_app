@@ -71,19 +71,19 @@ class MapRepositoryImpl(
                 )
     }
 
-    override fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit) {
-        fuelStationsApi.getFuelStations()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(FuelStationMapper::toGasolineStationModel).subscribeBy(
-                        onNext = {
-                            Log.d(TAG, "getFuelStations: station = $it")
-                            onSuccess.invoke(it)
-                        },
-                        onError = {
-                            Log.d(TAG, "getFuelStations: cause = ${it.cause}")
-                            onError.invoke(it)
-                        }
-                )
-    }
+//    override fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit) {
+//        fuelStationsApi.getFuelStations()
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .map(FuelStationMapper::toGasolineStationModel).subscribeBy(
+//                        onNext = {
+//                            Log.d(TAG, "getFuelStations: station = $it")
+//                            onSuccess.invoke(it)
+//                        },
+//                        onError = {
+//                            Log.d(TAG, "getFuelStations: cause = ${it.cause}")
+//                            onError.invoke(it)
+//                        }
+//                )
+//    }
 }

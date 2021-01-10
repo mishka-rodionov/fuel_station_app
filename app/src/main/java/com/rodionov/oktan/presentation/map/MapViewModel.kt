@@ -18,9 +18,9 @@ class MapViewModel(
     val stations = MutableLiveData<List<GasolineStation>>()
     val currentLocation = MutableLiveData<Location>()
 
-    init {
-        mapRepository.getFuelStations(onSuccess = ::handleFuelStations, onError = ::handleError)
-    }
+//    init {
+//        mapRepository.getFuelStations(onSuccess = ::handleFuelStations, onError = ::handleError)
+//    }
 
     fun createGasolineStation(gasolineStation: GasolineStation) {
         mapRepository.createRemoteGasolineStation(gasolineStation = gasolineStation, onSuccess = {}, onError = {})
