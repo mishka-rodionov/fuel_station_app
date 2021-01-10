@@ -9,6 +9,9 @@ import androidx.fragment.app.DialogFragment
 import com.rodionov.oktan.R
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.entities.model.*
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineName
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineType
 import kotlinx.android.synthetic.main.dialog_fragment_create_fuel_station.*
 
 class CreateFuelStationDialog(

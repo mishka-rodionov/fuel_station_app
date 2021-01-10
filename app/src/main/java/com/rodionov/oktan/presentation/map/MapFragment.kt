@@ -24,7 +24,7 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.app.extension.observe
 import com.rodionov.oktan.app.platform.BaseFragment
 import com.rodionov.oktan.data.entities.model.Coordinates
-import com.rodionov.oktan.data.entities.model.GasolineStation
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.presentation.common.dialog.CreateFuelStationDialog
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.viewModel

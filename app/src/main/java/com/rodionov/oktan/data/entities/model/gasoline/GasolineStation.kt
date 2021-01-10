@@ -1,4 +1,9 @@
-package com.rodionov.oktan.data.entities.model
+package com.rodionov.oktan.data.entities.model.gasoline
+
+import com.rodionov.oktan.data.entities.model.Coordinates
+import com.rodionov.oktan.data.entities.model.FuelStation
+import com.rodionov.oktan.data.entities.model.FuelStationServices
+import com.rodionov.oktan.data.entities.model.FuelStationType
 
 class GasolineStation(
         id: String,

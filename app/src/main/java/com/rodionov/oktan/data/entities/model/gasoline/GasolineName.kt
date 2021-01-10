@@ -1,4 +1,4 @@
-package com.rodionov.oktan.data.entities.model
+package com.rodionov.oktan.data.entities.model.gasoline
 
 enum class GasolineName {
 

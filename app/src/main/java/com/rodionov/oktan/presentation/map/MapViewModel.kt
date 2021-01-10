@@ -7,7 +7,7 @@ import com.rodionov.oktan.app.platform.BaseViewModel
 import com.rodionov.oktan.app.utils.LocationProvider
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.entities.model.FuelStation
-import com.rodionov.oktan.data.entities.model.GasolineStation
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.domain.MapRepository
 
 class MapViewModel(

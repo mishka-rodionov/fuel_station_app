@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import com.rodionov.oktan.data.database.converters.FuelStationConverter
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
-import com.rodionov.oktan.data.entities.model.GasolineType
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineType
 
 @Entity(tableName = "gasoline_station")
 @TypeConverters(FuelStationConverter::class)

@@ -3,8 +3,7 @@ package com.rodionov.oktan.data.repository
 import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
-import com.rodionov.oktan.data.entities.model.FuelStation
-import com.rodionov.oktan.data.entities.model.GasolineStation
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
 import com.rodionov.oktan.domain.MapRepository

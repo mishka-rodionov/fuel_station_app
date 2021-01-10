@@ -6,7 +6,7 @@ import com.rodionov.oktan.app.extension.fromJson
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
-import com.rodionov.oktan.data.entities.model.GasolineType
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineType
 
 class FuelStationConverter {
     private val gson = Gson()

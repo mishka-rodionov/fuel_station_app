@@ -1,7 +1,6 @@
 package com.rodionov.oktan.domain
 
-import com.rodionov.oktan.data.entities.model.FuelStation
-import com.rodionov.oktan.data.entities.model.GasolineStation
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 
 interface MapRepository {
 
