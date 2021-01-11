@@ -6,9 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rodionov.oktan.data.database.FuelStationDatabase.Companion.DATABASE_VERSION
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.database.dto.ChargingStationDto
+import com.rodionov.oktan.data.database.dto.GasStationDto
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
 
-@Database(entities = [GasolineStationDto::class], version = DATABASE_VERSION, exportSchema = false)
+@Database(entities = [GasolineStationDto::class, GasStationDto::class, ChargingStationDto::class], version = DATABASE_VERSION, exportSchema = false)
 abstract class FuelStationDatabase: RoomDatabase() {
 
     abstract fun gasolineStationDao(): GasolineStationDao

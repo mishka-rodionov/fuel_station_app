@@ -6,6 +6,9 @@ import com.rodionov.oktan.app.extension.fromJson
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
+import com.rodionov.oktan.data.entities.model.electric.ChargeType
+import com.rodionov.oktan.data.entities.model.electric.ConnectorType
+import com.rodionov.oktan.data.entities.model.gas.GasType
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineType
 
 class FuelStationConverter {
@@ -24,6 +27,27 @@ class FuelStationConverter {
 
     @TypeConverter
     fun toGasolineType(types: String?) = gson.fromJson<List<GasolineType>?>(types.orEmpty())
+
+    @TypeConverter
+    fun fromGasType(types: List<GasType>?): String? =
+            gson.toJson(types.orEmpty())
+
+    @TypeConverter
+    fun toGasType(types: String?) = gson.fromJson<List<GasType>?>(types.orEmpty())
+
+    @TypeConverter
+    fun fromChargeType(types: List<ChargeType>?): String? =
+            gson.toJson(types.orEmpty())
+
+    @TypeConverter
+    fun toChargeType(types: String?) = gson.fromJson<List<ChargeType>?>(types.orEmpty())
+
+    @TypeConverter
+    fun fromConnectorType(types: List<ConnectorType>?): String? =
+            gson.toJson(types.orEmpty())
+
+    @TypeConverter
+    fun toConnectorType(types: String?) = gson.fromJson<List<ConnectorType>?>(types.orEmpty())
 
     @TypeConverter
     fun fromGFuelStationServices(services: List<FuelStationServices>?): String? =

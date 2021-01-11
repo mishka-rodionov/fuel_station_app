@@ -7,11 +7,11 @@ import androidx.room.TypeConverters
 import com.rodionov.oktan.data.database.converters.FuelStationConverter
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
-import com.rodionov.oktan.data.entities.model.gasoline.GasolineType
+import com.rodionov.oktan.data.entities.model.gas.GasType
 
-@Entity(tableName = "gasoline_stations")
+@Entity(tableName = "gas_stations")
 @TypeConverters(FuelStationConverter::class)
-data class GasolineStationDto(
+data class GasStationDto (
         @PrimaryKey
         @ColumnInfo(name = "id")
         val id: String,
@@ -19,8 +19,8 @@ data class GasolineStationDto(
         val services: List<FuelStationServices>? = null,
         @ColumnInfo(name = "brand")
         val brand: String? = null,
-        @ColumnInfo(name = "gasoline_types")
-        val gasolineTypes: List<GasolineType>? = null,
+        @ColumnInfo(name = "gas_types")
+        val gasTypes: List<GasType>? = null,
         @ColumnInfo(name = "coordinates")
         val coordinates: Coordinates? = null,
         @ColumnInfo(name = "date_of_creation")
