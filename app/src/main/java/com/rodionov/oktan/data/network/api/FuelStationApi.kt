@@ -1,7 +1,9 @@
 package com.rodionov.oktan.data.network.api
 
 import com.rodionov.oktan.data.entities.request.GasolineStationRequest
+import com.rodionov.oktan.data.entities.response.ChargingStationResponse
 import com.rodionov.oktan.data.entities.response.FuelStationResponse
+import com.rodionov.oktan.data.entities.response.GasStationResponse
 import com.rodionov.oktan.data.entities.response.GasolineStationResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.Body
@@ -13,11 +15,23 @@ interface FuelStationApi {
     @GET(GET_FUEL_STATIONS)
     fun getFuelStations(): Observable<FuelStationResponse>
 
+    @GET(GET_GASOLINE_STATIONS)
+    fun getGasolineStations(): Observable<List<GasolineStationResponse>>
+
+    @GET(GET_GAS_STATIONS)
+    fun getGasStations(): Observable<List<GasStationResponse>>
+
+    @GET(GET_CHARGING_STATIONS)
+    fun getChargingStations(): Observable<List<ChargingStationResponse>>
+
     @POST(NEW_GASOLINE_STATION)
     fun setGasolineStation(@Body gasolineStationRequest: GasolineStationRequest) : Observable<GasolineStationResponse>
 
     companion object {
         const val GET_FUEL_STATIONS = "/fuel_stations"
+        const val GET_GASOLINE_STATIONS = "/gasoline_stations"
+        const val GET_GAS_STATIONS = "/gas_stations"
+        const val GET_CHARGING_STATIONS = "/charging_stations"
         const val NEW_GASOLINE_STATION = "/gasoline_station/new"
     }
 

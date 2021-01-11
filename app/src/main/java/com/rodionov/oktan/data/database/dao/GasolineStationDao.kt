@@ -11,10 +11,10 @@ import io.reactivex.rxjava3.core.Observable
 @Dao
 interface GasolineStationDao {
 
-    @Query("SELECT * FROM gasoline_station")
+    @Query("SELECT * FROM gasoline_stations")
     fun getAllGasolineStations(): Flowable<List<GasolineStationDto>>
 
-    @Query("SELECT * FROM gasoline_station WHERE id = :id")
+    @Query("SELECT * FROM gasoline_stations WHERE id = :id")
     fun getGasolineStation(id: String): GasolineStationDto
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
