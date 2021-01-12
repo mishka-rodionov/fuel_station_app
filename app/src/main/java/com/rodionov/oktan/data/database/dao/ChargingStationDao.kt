@@ -1,5 +1,6 @@
 package com.rodionov.oktan.data.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,5 +21,14 @@ interface ChargingStationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun setChargingStation(chargingStationDto: ChargingStationDto)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(stations: List<ChargingStationDto>)
+
+    @Query("SELECT * FROM charging_stations WHERE id LIKE :id")
+    fun pagingSource(id: String): PagingSource<Int, ChargingStationDto>
+
+    @Query("DELETE FROM charging_stations")
+    fun clearAll()
 
 }
