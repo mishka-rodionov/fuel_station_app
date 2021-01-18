@@ -8,16 +8,19 @@ import com.rodionov.oktan.data.database.FuelStationDatabase.Companion.DATABASE_V
 import com.rodionov.oktan.data.database.dao.ChargingStationDao
 import com.rodionov.oktan.data.database.dao.GasStationDao
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
 import com.rodionov.oktan.data.database.dto.ChargingStationDto
 import com.rodionov.oktan.data.database.dto.GasStationDto
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyDto
 
-@Database(entities = [GasolineStationDto::class, GasStationDto::class, ChargingStationDto::class], version = DATABASE_VERSION, exportSchema = false)
+@Database(entities = [GasolineStationDto::class, GasStationDto::class, ChargingStationDto::class, RemoteGasolineKeyDto::class], version = DATABASE_VERSION, exportSchema = false)
 abstract class FuelStationDatabase: RoomDatabase() {
 
     abstract fun gasolineStationDao(): GasolineStationDao
     abstract fun gasStationDao(): GasStationDao
     abstract fun chargingStationDao(): ChargingStationDao
+    abstract fun remoteGasolineKeyDao(): RemoteGasolineKeyDao
 
     companion object {
         const val DATABASE_VERSION = 1

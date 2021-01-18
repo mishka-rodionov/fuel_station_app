@@ -21,7 +21,6 @@ class FuelStationListFragment : BaseFragment(R.layout.fragment_fuel_stations) {
 
     private val mDisposable = CompositeDisposable()
 
-
     override fun initViews(savedInstanceState: Bundle?) {
         rvFuelStations.adapter = gasolineStationAdapter
         mDisposable.add(

@@ -26,7 +26,7 @@ interface GasolineStationDao {
     fun insertAll(stations: List<GasolineStationDto>)
 
     @Query("SELECT * FROM gasoline_stations")
-    fun pagingSource(): PagingSource<Int, GasolineStation>
+    fun pagingSource(): PagingSource<Int, GasolineStationDto>
 
     @Query("DELETE FROM gasoline_stations")
     fun clearAll()

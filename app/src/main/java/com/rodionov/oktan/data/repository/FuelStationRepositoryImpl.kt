@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.flowable
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
@@ -40,7 +41,7 @@ class FuelStationRepositoryImpl(
                 )
     }
 
-    override fun getGasolineStations(): Flowable<PagingData<GasolineStation>> {
+    override fun getGasolineStations(): Flowable<PagingData<GasolineStationDto>> {
         return Pager(
                 config = PagingConfig(
                         pageSize = 20,

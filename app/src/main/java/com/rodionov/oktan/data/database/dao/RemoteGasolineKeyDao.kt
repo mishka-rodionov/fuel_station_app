@@ -4,18 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKey
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
+import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyDto
 
 @Dao
 interface RemoteGasolineKeyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(remoteKey: List<RemoteGasolineKey>)
+    fun insertAll(remoteKeyDto: List<RemoteGasolineKeyDto>)
 
     @Query("SELECT * FROM remote_gasoline_keys WHERE id = :id")
-    fun getRemoteKey(id: String): RemoteGasolineKey?
+    fun getRemoteKey(id: String): RemoteGasolineKeyDto?
 
     @Query("DELETE FROM remote_gasoline_keys")
     fun clearRemoteKeys()

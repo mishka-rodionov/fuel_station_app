@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "remote_gasoline_keys")
-data class RemoteGasolineKey(
+data class RemoteGasolineKeyDto(
         @PrimaryKey
         @ColumnInfo(name = "id")
         val gasolineStationId: String,
