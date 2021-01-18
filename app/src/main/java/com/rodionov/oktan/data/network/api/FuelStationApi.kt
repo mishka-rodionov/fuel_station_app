@@ -6,6 +6,7 @@ import com.rodionov.oktan.data.entities.response.FuelStationResponse
 import com.rodionov.oktan.data.entities.response.GasStationResponse
 import com.rodionov.oktan.data.entities.response.GasolineStationResponse
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -17,6 +18,9 @@ interface FuelStationApi {
 
     @GET(GET_GASOLINE_STATIONS)
     fun getGasolineStations(): Observable<List<GasolineStationResponse>>
+
+    @GET(GET_GASOLINE_STATIONS)
+    fun getGasolineStationList(): Single<List<GasolineStationResponse>>
 
     @GET(GET_GAS_STATIONS)
     fun getGasStations(): Observable<List<GasStationResponse>>

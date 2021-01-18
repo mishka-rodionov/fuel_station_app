@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 
@@ -24,8 +25,8 @@ interface GasolineStationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(stations: List<GasolineStationDto>)
 
-    @Query("SELECT * FROM gasoline_stations WHERE id LIKE :id")
-    fun pagingSource(id: String): PagingSource<Int, GasolineStationDto>
+    @Query("SELECT * FROM gasoline_stations")
+    fun pagingSource(): PagingSource<Int, GasolineStation>
 
     @Query("DELETE FROM gasoline_stations")
     fun clearAll()

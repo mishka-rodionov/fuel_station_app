@@ -1,23 +1,120 @@
 package com.rodionov.oktan.presentation.fuel_station_list.remote_mediators
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxRemoteMediator
+import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
+import com.rodionov.oktan.data.database.dto.RemoteGasolineKey
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
+import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.io.InvalidObjectException
 
 @ExperimentalPagingApi
 class FuelStationsRemoteMediator(
         private val query: String,
         private val fuelStationApi: FuelStationApi,
-        private val gasolineStationDao: GasolineStationDao
-): RxRemoteMediator<Int, GasolineStation>() {
+        private val gasolineStationDao: GasolineStationDao,
+        private val remoteGasolineKeyDao: RemoteGasolineKeyDao
+) : RxRemoteMediator<Int, GasolineStation>() {
 
     override fun loadSingle(loadType: LoadType, state: PagingState<Int, GasolineStation>): Single<MediatorResult> {
+        return Single.just(loadType)
+                .subscribeOn(Schedulers.io())
+                .map {
+                    getKeyPageData(it, state)
+                }
+                .flatMap { page ->
+                    if (page == INVALID_PAGE) {
+                        Single.just(MediatorResult.Success(endOfPaginationReached = true))
+                    } else {
+                        fuelStationApi.getGasolineStationList()
+                                .map {
+                                    it.map(FuelStationMapper::toGasolineStationModel)
+                                }
+                                .map {
+                                    insertToDb(page, loadType, it) }
+                                .map<MediatorResult> { MediatorResult.Success(endOfPaginationReached = it.isEmpty()) }
+                                .onErrorReturn { MediatorResult.Error(it) }
+                    }
+                }
+                .onErrorReturn {
+                    MediatorResult.Error(it)
+                }
+    }
 
+    private fun insertToDb(page: Int, loadType: LoadType, data: List<GasolineStation>): List<GasolineStation> {
+        if (loadType == LoadType.REFRESH) {
+            remoteGasolineKeyDao.clearRemoteKeys()
+            gasolineStationDao.clearAll()
+        }
+
+        val prevKey = if (page == 1) null else page - 1
+        val nextKey = if (data.isEmpty()) null else page + 1
+        val keys = data.map {
+            RemoteGasolineKey(gasolineStationId = it.id, prevKey = prevKey, nextKey = nextKey)
+        }
+        remoteGasolineKeyDao.insertAll(keys)
+        gasolineStationDao.insertAll(data.map(FuelStationMapper::toGasolineStationDto))
+
+        return data
+    }
+
+    fun getKeyPageData(loadType: LoadType, state: PagingState<Int, GasolineStation>): Int {
+        return when (loadType) {
+            LoadType.REFRESH -> {
+                val remoteKeys = getClosestRemoteKey(state)
+
+                remoteKeys?.nextKey?.minus(1) ?: DEFAULT_PAGE_INDEX
+            }
+            LoadType.APPEND -> {
+                val remoteKeys = getLastRemoteKey(state)
+                        ?: throw InvalidObjectException("Remote key should not be null for $loadType")
+                remoteKeys.nextKey ?: INVALID_PAGE
+            }
+            LoadType.PREPEND -> {
+                val remoteKeys = getFirstRemoteKey(state)
+                        ?: throw InvalidObjectException("Invalid state, key should not be null")
+                //end of list condition reached
+                remoteKeys.prevKey ?: INVALID_PAGE
+            }
+        }
+    }
+
+    private fun getLastRemoteKey(state: PagingState<Int, GasolineStation>):
+            RemoteGasolineKey? {
+        return state.pages
+                .lastOrNull { it.data.isNotEmpty() }
+                ?.data?.lastOrNull()
+                ?.let { gasolineStation -> remoteGasolineKeyDao.getRemoteKey(gasolineStation.id) }
+    }
+
+    private fun getFirstRemoteKey(state: PagingState<Int, GasolineStation>):
+            RemoteGasolineKey? {
+        return state.pages
+                .firstOrNull() { it.data.isNotEmpty() }
+                ?.data?.firstOrNull()
+                ?.let { gasolineStation -> remoteGasolineKeyDao.getRemoteKey(gasolineStation.id) }
+    }
+
+    private fun getClosestRemoteKey(state: PagingState<Int, GasolineStation>):
+            RemoteGasolineKey? {
+        return state.anchorPosition?.let { position ->
+            state.closestItemToPosition(position)?.id?.let { id ->
+                remoteGasolineKeyDao.getRemoteKey(id)
+            }
+        }
+    }
+
+    companion object {
+        const val INVALID_PAGE = -1
+        const val DEFAULT_PAGE_INDEX = 1
     }
 
 }
