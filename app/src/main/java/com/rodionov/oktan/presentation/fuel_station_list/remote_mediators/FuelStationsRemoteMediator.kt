@@ -8,6 +8,7 @@ import com.rodionov.oktan.data.database.dao.GasolineStationDao
 import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
 import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyDto
+import com.rodionov.oktan.data.entities.request.GasolineStationListRequest
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
 import io.reactivex.rxjava3.core.Single
@@ -31,7 +32,7 @@ class FuelStationsRemoteMediator(
                     if (page == INVALID_PAGE) {
                         Single.just(MediatorResult.Success(endOfPaginationReached = true))
                     } else {
-                        fuelStationApi.getGasolineStationList()
+                        fuelStationApi.getGasolineStationList(GasolineStationListRequest(brand = "CHARGING", offset = page * LIMIT, limit = LIMIT))
                                 .map {
                                     val stations = it.map(FuelStationMapper::toGasolineStationModel)
                                     stations.map(FuelStationMapper::toGasolineStationDto)
@@ -111,6 +112,7 @@ class FuelStationsRemoteMediator(
     }
 
     companion object {
+        const val LIMIT = 3
         const val INVALID_PAGE = -1
         const val DEFAULT_PAGE_INDEX = 1
     }

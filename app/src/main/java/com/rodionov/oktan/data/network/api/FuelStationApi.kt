@@ -1,5 +1,6 @@
 package com.rodionov.oktan.data.network.api
 
+import com.rodionov.oktan.data.entities.request.GasolineStationListRequest
 import com.rodionov.oktan.data.entities.request.GasolineStationRequest
 import com.rodionov.oktan.data.entities.response.ChargingStationResponse
 import com.rodionov.oktan.data.entities.response.FuelStationResponse
@@ -19,8 +20,8 @@ interface FuelStationApi {
     @GET(GET_GASOLINE_STATIONS)
     fun getGasolineStations(): Observable<List<GasolineStationResponse>>
 
-    @GET(GET_GASOLINE_STATIONS)
-    fun getGasolineStationList(): Single<List<GasolineStationResponse>>
+    @POST(GET_GASOLINE_STATION_LIST)
+    fun getGasolineStationList(@Body gasolineStationListRequest: GasolineStationListRequest): Single<List<GasolineStationResponse>>
 
     @GET(GET_GAS_STATIONS)
     fun getGasStations(): Observable<List<GasStationResponse>>
@@ -34,6 +35,7 @@ interface FuelStationApi {
     companion object {
         const val GET_FUEL_STATIONS = "/fuel_stations"
         const val GET_GASOLINE_STATIONS = "/gasoline_stations"
+        const val GET_GASOLINE_STATION_LIST = "/gasoline_station_list"
         const val GET_GAS_STATIONS = "/gas_stations"
         const val GET_CHARGING_STATIONS = "/charging_stations"
         const val NEW_GASOLINE_STATION = "/gasoline_station/new"
