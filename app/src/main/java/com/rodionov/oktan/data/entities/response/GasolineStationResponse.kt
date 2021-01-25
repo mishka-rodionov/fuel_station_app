@@ -19,6 +19,8 @@ data class GasolineStationResponse(
         @SerializedName("date_of_creation")
         val dateOfCreation: Long? = null,
         @SerializedName("creator_id")
-        val creatorId: String? = null
+        val creatorId: String? = null,
+        @SerializedName("active_status")
+        val activeStatus: Boolean? = null
 
 )

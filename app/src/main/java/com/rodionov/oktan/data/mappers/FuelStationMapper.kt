@@ -15,7 +15,8 @@ object FuelStationMapper {
                 gasolineTypes = gasolineTypes,
                 coordinates = coordinates,
                 dateOfCreation = dateOfCreation.toString(),
-                creatorId = creatorId
+                creatorId = creatorId,
+                activeStatus = activeStatus
         )
     }
 
@@ -27,7 +28,8 @@ object FuelStationMapper {
                 coordinates = coordinates,
                 gasolineTypes = gasolineTypes,
                 dateOfCreation = dateOfCreation?.toLong(),
-                creatorId = creatorId
+                creatorId = creatorId,
+                activeStatus = activeStatus
         )
     }
 
@@ -49,13 +51,14 @@ object FuelStationMapper {
                 coordinates = coordinates,
                 gasolineTypes = gasolineTypes,
                 dateOfCreation = dateOfCreation,
-                creatorId = creatorId
+                creatorId = creatorId,
+                activeStatus = activeStatus
         )
     }
 
     fun toGasolineStationRequest(gasolineStation: GasolineStation) = gasolineStation.run {
         GasolineStationRequest(
-                services, coordinates, brand, gasolineTypes, creatorId
+                services, coordinates, brand, gasolineTypes, creatorId, activeStatus
         )
     }
 

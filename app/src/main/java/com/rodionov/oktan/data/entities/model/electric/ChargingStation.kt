@@ -14,6 +14,7 @@ class ChargingStation(
         id: String,
         dateOfCreation: Long?,
         creatorId: String?,
+        activeStatus: Boolean?,
         @SerializedName("charging_types")
         val chargeTypes: List<ChargeType>? = null,
         @SerializedName("connector_types")
@@ -25,5 +26,6 @@ class ChargingStation(
         brand = brand,
         id = id,
         dateOfCreation = dateOfCreation,
-        creatorId = creatorId
+        creatorId = creatorId,
+        activeStatus = activeStatus
 )

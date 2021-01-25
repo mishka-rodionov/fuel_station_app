@@ -7,5 +7,6 @@ open class FuelStation(
         var coordinates: Coordinates? = null,
         var brand: String? = null,
         var dateOfCreation: Long? = null,
-        var creatorId: String? = null
+        var creatorId: String? = null,
+        var activeStatus: Boolean? = null
 )

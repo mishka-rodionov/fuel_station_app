@@ -32,6 +32,7 @@ import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import com.rodionov.oktan.presentation.common.dialog.CommonBottomDialogFragment
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 
@@ -67,7 +68,8 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
             mapboxMap.addOnMapLongClickListener { point ->
                 Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
-                CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
+//                CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
+                showBottomSheetDialog()
                 true
             }
 //            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition()), 2000)
@@ -75,6 +77,18 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
             viewModel.getAllGasolineStation()
         }
 
+    }
+
+    protected fun showBottomSheetDialog() {
+        val dialog = CommonBottomDialogFragment.newInstance(
+//                items = listOf(
+//                        ItemDialog(R.drawable.ic_camera, R.string.label_camera),
+//                        ItemDialog(R.drawable.ic_folder_gray, R.string.label_document),
+//                        ItemDialog(R.drawable.ic_gallery, R.string.label_gallery)
+//                ), title = getString(R.string.label_title_doc_upload_bottom_sheet)
+        )
+        dialog.setTargetFragment(this, 0)
+        dialog.show(parentFragmentManager, "DocUploadFragmentDialog")
     }
 
     @NeedsPermission(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)

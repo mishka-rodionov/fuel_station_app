@@ -143,4 +143,7 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxkotlin:${versions.rx_kotlin}"
     implementation "io.reactivex.rxjava3:rxandroid:${versions.rx_android}"
     implementation "io.reactivex.rxjava3:rxjava:${versions.rx_java}"
+
+    //CircleImageView
+    implementation "de.hdodenhof:circleimageview:${versions.circleimageview}"
 }

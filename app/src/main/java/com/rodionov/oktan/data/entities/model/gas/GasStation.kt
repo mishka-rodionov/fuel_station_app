@@ -14,6 +14,7 @@ class GasStation(
         id: String,
         dateOfCreation: Long?,
         creatorId: String?,
+        activeStatus: Boolean?,
         @SerializedName("gas_types")
         val gasTypes: List<GasType>? = null
 ) : FuelStation(
@@ -23,5 +24,6 @@ class GasStation(
         brand = brand,
         id = id,
         dateOfCreation = dateOfCreation,
-        creatorId = creatorId
+        creatorId = creatorId,
+        activeStatus = activeStatus
 )

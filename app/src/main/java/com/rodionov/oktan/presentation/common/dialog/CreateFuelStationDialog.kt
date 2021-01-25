@@ -44,7 +44,8 @@ class CreateFuelStationDialog(
                         brand = etBrand.text.toString(),
                         gasolineTypes = listOf(GasolineType(name = GasolineName.AI95, pricePerLiter = 45.0F, realOktanNumber = 93F)),
                         dateOfCreation = 0L,
-                        creatorId = "mobile_user"
+                        creatorId = "mobile_user",
+                        activeStatus = true
                 )
                 createGasolineStation.invoke(gasolineStation)
                 dismiss()

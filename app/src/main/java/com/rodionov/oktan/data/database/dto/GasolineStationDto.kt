@@ -26,5 +26,7 @@ data class GasolineStationDto(
         @ColumnInfo(name = "date_of_creation")
         val dateOfCreation: String? = null,
         @ColumnInfo(name = "creator_id")
-        val creatorId: String? = null
+        val creatorId: String? = null,
+        @ColumnInfo(name = "active_status")
+        val activeStatus: Boolean? = null
 )
