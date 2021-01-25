@@ -9,6 +9,9 @@
 
     <!--    Hint-->
     <string name="hint_brand">Торговая марка</string>
+    <string name="hint_active_status">Статус</string>
+    <string name="hint_active_status_helper">Статус заправочной станции (открыта, закрыта, на ремонте)</string>
+    <string name="hint_brand_helper">Торговая марка поставщика топлива.</string>
 
     <!--    Labels-->
     <string name="label_latitude">Широта</string>
@@ -22,4 +25,17 @@
     <!--    Patterns-->
     <string name="pattern_distance">$1%s $2%s</string>
     <string name="pattern_price">$1%s $2%s</string>
+
+    <!--    Arrays-->
+    <string-array name="brands">
+        <item>Лукойл</item>
+        <item>Роснефть</item>
+        <item>Башнефть</item>
+    </string-array>
+
+    <string-array name="statuses">
+        <item>Открыта</item>
+        <item>На ремонте</item>
+        <item>Закрыта</item>
+    </string-array>
 </resources>

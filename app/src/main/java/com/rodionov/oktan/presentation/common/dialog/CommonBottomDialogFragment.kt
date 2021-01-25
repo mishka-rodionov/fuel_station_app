@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.rodionov.oktan.R
-import com.rodionov.oktan.presentation.common.delegates.ItemDialog
-import com.rodionov.oktan.presentation.common.delegates.bottomDialogDelegate
-import com.rodionov.oktan.presentation.common.delegates.selectFuelStationTypeAdapter
+import com.rodionov.oktan.presentation.common.delegates.*
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 
 class CommonBottomDialogFragment : BottomSheetDialogFragment() {
@@ -21,7 +19,8 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
-        selectFuelStationTypeAdapter()
+                selectFuelStationTypeAdapter(),
+                itemFirstLevelAdapter()
         )
     }
 
@@ -31,9 +30,9 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +44,7 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 //        rvBottomSheetDialog.layoutManager = LinearLayoutManager(activity)
 //        rvBottomSheetDialog.adapter = bottomDialogAdapter
 
-        bottomDialogAdapter.items = listOf(Unit, Unit)
+        bottomDialogAdapter.items = listOf(Unit, FirstLevelItem())
     }
 
     interface BottomSheetDialogListener {
@@ -57,11 +56,11 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
         private const val ARG_TITLE = "title"
 
         fun newInstance(items: List<ItemDialog> = emptyList(), title: String = "") =
-            CommonBottomDialogFragment().apply {
-                arguments = bundleOf(
-                    ARG_ITEMS to items,
-                    ARG_TITLE to title
+                CommonBottomDialogFragment().apply {
+                    arguments = bundleOf(
+                            ARG_ITEMS to items,
+                            ARG_TITLE to title
                     )
-            }
+                }
     }
 }

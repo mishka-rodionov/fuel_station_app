@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBrand"
+        style="@style/TextInputLayoutExposed"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:hint="@string/hint_brand"
+        android:inputType="none"
+        app:helperText="@string/hint_brand_helper">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilActiveStatus"
+        style="@style/TextInputLayoutExposed"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:hint="@string/hint_active_status"
+        android:inputType="none"
+        app:helperText="@string/hint_active_status_helper">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvActiveStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>
