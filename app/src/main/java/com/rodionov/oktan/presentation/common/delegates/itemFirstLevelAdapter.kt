@@ -5,7 +5,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 import com.rodionov.oktan.R
 import kotlinx.android.synthetic.main.item_first_level_parameters.view.*
 
-fun itemFirstLevelAdapter() = adapterDelegateLayoutContainer<FirstLevelItem, Any>(R.layout.item_first_level_parameters) {
+fun itemFirstLevelAdapter() = adapterDelegateLayoutContainer<FirstLevelParameters, Any>(R.layout.item_first_level_parameters) {
 
     bind {
         containerView.actvBrand.setAdapter(
@@ -26,4 +26,4 @@ fun itemFirstLevelAdapter() = adapterDelegateLayoutContainer<FirstLevelItem, Any
     }
 }
 
-class FirstLevelItem
+class FirstLevelParameters

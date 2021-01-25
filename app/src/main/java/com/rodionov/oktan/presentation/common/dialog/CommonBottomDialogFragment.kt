@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.rodionov.oktan.R
@@ -20,7 +19,8 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
                 selectFuelStationTypeAdapter(),
-                itemFirstLevelAdapter()
+                itemFirstLevelAdapter(),
+                secondLevelParametersItemAdapter()
         )
     }
 
@@ -44,7 +44,7 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 //        rvBottomSheetDialog.layoutManager = LinearLayoutManager(activity)
 //        rvBottomSheetDialog.adapter = bottomDialogAdapter
 
-        bottomDialogAdapter.items = listOf(Unit, FirstLevelItem())
+        bottomDialogAdapter.items = listOf(Unit, FirstLevelParameters(), SecondLevelParameters())
     }
 
     interface BottomSheetDialogListener {
