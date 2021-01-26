@@ -5,28 +5,26 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
-import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
+import com.rodionov.oktan.data.database.dto.GasolineStationEntity
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface GasolineStationDao {
 
     @Query("SELECT * FROM gasoline_stations")
-    fun getAllGasolineStations(): Flowable<List<GasolineStationDto>>
+    fun getAllGasolineStations(): Flowable<List<GasolineStationEntity>>
 
     @Query("SELECT * FROM gasoline_stations WHERE id = :id")
-    fun getGasolineStation(id: String): GasolineStationDto
+    fun getGasolineStation(id: String): GasolineStationEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setGasolineStation(gasolineStationDto: GasolineStationDto)
+    fun setGasolineStation(gasolineStationEntity: GasolineStationEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(stations: List<GasolineStationDto>)
+    fun insertAll(stations: List<GasolineStationEntity>)
 
     @Query("SELECT * FROM gasoline_stations")
-    fun pagingSource(): PagingSource<Int, GasolineStationDto>
+    fun pagingSource(): PagingSource<Int, GasolineStationEntity>
 
     @Query("DELETE FROM gasoline_stations")
     fun clearAll()

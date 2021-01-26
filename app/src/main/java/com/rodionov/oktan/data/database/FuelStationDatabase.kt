@@ -9,12 +9,12 @@ import com.rodionov.oktan.data.database.dao.ChargingStationDao
 import com.rodionov.oktan.data.database.dao.GasStationDao
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
 import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
-import com.rodionov.oktan.data.database.dto.ChargingStationDto
-import com.rodionov.oktan.data.database.dto.GasStationDto
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyDto
+import com.rodionov.oktan.data.database.dto.ChargingStationEntity
+import com.rodionov.oktan.data.database.dto.GasStationEntity
+import com.rodionov.oktan.data.database.dto.GasolineStationEntity
+import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyEntity
 
-@Database(entities = [GasolineStationDto::class, GasStationDto::class, ChargingStationDto::class, RemoteGasolineKeyDto::class], version = DATABASE_VERSION, exportSchema = false)
+@Database(entities = [GasolineStationEntity::class, GasStationEntity::class, ChargingStationEntity::class, RemoteGasolineKeyEntity::class], version = DATABASE_VERSION, exportSchema = false)
 abstract class FuelStationDatabase: RoomDatabase() {
 
     abstract fun gasolineStationDao(): GasolineStationDao

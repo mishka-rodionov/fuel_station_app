@@ -7,7 +7,6 @@ import androidx.paging.map
 import androidx.paging.rxjava3.cachedIn
 import com.rodionov.oktan.app.platform.BaseViewModel
 import com.rodionov.oktan.app.utils.Logger.TAG
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.domain.FuelStationRepository

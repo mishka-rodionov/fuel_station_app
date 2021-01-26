@@ -1,6 +1,6 @@
 package com.rodionov.oktan.data.mappers
 
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.database.dto.GasolineStationEntity
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.entities.request.GasolineStationRequest
 import com.rodionov.oktan.data.entities.response.GasolineStationResponse
@@ -8,7 +8,7 @@ import com.rodionov.oktan.data.entities.response.GasolineStationResponse
 object FuelStationMapper {
 
     fun toGasolineStationDto(gasolineStation: GasolineStation) = gasolineStation.run {
-        GasolineStationDto(
+        GasolineStationEntity(
                 id = id,
                 services = services,
                 brand = brand,
@@ -20,7 +20,7 @@ object FuelStationMapper {
         )
     }
 
-    fun toGasolineStationModel(gasolineStationDto: GasolineStationDto) = gasolineStationDto.run {
+    fun toGasolineStationModel(gasolineStationEntity: GasolineStationEntity) = gasolineStationEntity.run {
         GasolineStation(
                 id = id,
                 services = services,

@@ -6,8 +6,8 @@ import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxRemoteMediator
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
 import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyDto
+import com.rodionov.oktan.data.database.dto.GasolineStationEntity
+import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyEntity
 import com.rodionov.oktan.data.entities.request.GasolineStationListRequest
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
@@ -20,9 +20,9 @@ class FuelStationsRemoteMediator(
         private val fuelStationApi: FuelStationApi,
         private val gasolineStationDao: GasolineStationDao,
         private val remoteGasolineKeyDao: RemoteGasolineKeyDao
-) : RxRemoteMediator<Int, GasolineStationDto>() {
+) : RxRemoteMediator<Int, GasolineStationEntity>() {
 
-    override fun loadSingle(loadType: LoadType, state: PagingState<Int, GasolineStationDto>): Single<MediatorResult> {
+    override fun loadSingle(loadType: LoadType, state: PagingState<Int, GasolineStationEntity>): Single<MediatorResult> {
         return Single.just(loadType)
                 .subscribeOn(Schedulers.io())
                 .map {
@@ -48,7 +48,7 @@ class FuelStationsRemoteMediator(
                 }
     }
 
-    private fun insertToDb(page: Int, loadType: LoadType, data: List<GasolineStationDto>): List<GasolineStationDto> {
+    private fun insertToDb(page: Int, loadType: LoadType, data: List<GasolineStationEntity>): List<GasolineStationEntity> {
         if (loadType == LoadType.REFRESH) {
             remoteGasolineKeyDao.clearRemoteKeys()
             gasolineStationDao.clearAll()
@@ -57,7 +57,7 @@ class FuelStationsRemoteMediator(
         val prevKey = if (page == 1) null else page - 1
         val nextKey = if (data.isEmpty()) null else page + 1
         val keys = data.map {
-            RemoteGasolineKeyDto(gasolineStationId = it.id, prevKey = prevKey, nextKey = nextKey)
+            RemoteGasolineKeyEntity(gasolineStationId = it.id, prevKey = prevKey, nextKey = nextKey)
         }
         remoteGasolineKeyDao.insertAll(keys)
         gasolineStationDao.insertAll(data)
@@ -65,7 +65,7 @@ class FuelStationsRemoteMediator(
         return data
     }
 
-    fun getKeyPageData(loadType: LoadType, state: PagingState<Int, GasolineStationDto>): Int {
+    fun getKeyPageData(loadType: LoadType, state: PagingState<Int, GasolineStationEntity>): Int {
         return when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getClosestRemoteKey(state)
@@ -86,24 +86,24 @@ class FuelStationsRemoteMediator(
         }
     }
 
-    private fun getLastRemoteKey(state: PagingState<Int, GasolineStationDto>):
-            RemoteGasolineKeyDto? {
+    private fun getLastRemoteKey(state: PagingState<Int, GasolineStationEntity>):
+            RemoteGasolineKeyEntity? {
         return state.pages
                 .lastOrNull { it.data.isNotEmpty() }
                 ?.data?.lastOrNull()
                 ?.let { gasolineStation -> remoteGasolineKeyDao.getRemoteKey(gasolineStation.id) }
     }
 
-    private fun getFirstRemoteKey(state: PagingState<Int, GasolineStationDto>):
-            RemoteGasolineKeyDto? {
+    private fun getFirstRemoteKey(state: PagingState<Int, GasolineStationEntity>):
+            RemoteGasolineKeyEntity? {
         return state.pages
                 .firstOrNull() { it.data.isNotEmpty() }
                 ?.data?.firstOrNull()
                 ?.let { gasolineStation -> remoteGasolineKeyDao.getRemoteKey(gasolineStation.id) }
     }
 
-    private fun getClosestRemoteKey(state: PagingState<Int, GasolineStationDto>):
-            RemoteGasolineKeyDto? {
+    private fun getClosestRemoteKey(state: PagingState<Int, GasolineStationEntity>):
+            RemoteGasolineKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 remoteGasolineKeyDao.getRemoteKey(id)

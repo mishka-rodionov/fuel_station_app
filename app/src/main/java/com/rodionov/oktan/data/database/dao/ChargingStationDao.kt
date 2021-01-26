@@ -5,28 +5,26 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rodionov.oktan.data.database.dto.ChargingStationDto
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.database.dto.ChargingStationEntity
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface ChargingStationDao {
 
     @Query("SELECT * FROM charging_stations")
-    fun getAllChargingStations(): Flowable<List<ChargingStationDto>>
+    fun getAllChargingStations(): Flowable<List<ChargingStationEntity>>
 
     @Query("SELECT * FROM gasoline_stations WHERE id = :id")
-    fun getChargingStation(id: String): ChargingStationDto
+    fun getChargingStation(id: String): ChargingStationEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setChargingStation(chargingStationDto: ChargingStationDto)
+    fun setChargingStation(chargingStationEntity: ChargingStationEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(stations: List<ChargingStationDto>)
+    fun insertAll(stations: List<ChargingStationEntity>)
 
     @Query("SELECT * FROM charging_stations WHERE id LIKE :id")
-    fun pagingSource(id: String): PagingSource<Int, ChargingStationDto>
+    fun pagingSource(id: String): PagingSource<Int, ChargingStationEntity>
 
     @Query("DELETE FROM charging_stations")
     fun clearAll()

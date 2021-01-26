@@ -3,7 +3,7 @@ package com.rodionov.oktan.data.database.converters
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.rodionov.oktan.app.extension.fromJson
-import com.rodionov.oktan.data.database.dto.GasolineStationDto
+import com.rodionov.oktan.data.database.dto.GasolineStationEntity
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
 import com.rodionov.oktan.data.entities.model.electric.ChargeType
@@ -15,11 +15,11 @@ class FuelStationConverter {
     private val gson = Gson()
 
     @TypeConverter
-    fun fromGasolineStationDto(stations: List<GasolineStationDto>?): String? =
+    fun fromGasolineStationDto(stations: List<GasolineStationEntity>?): String? =
             gson.toJson(stations.orEmpty())
 
     @TypeConverter
-    fun toGasolineStationDto(stations: String?) = gson.fromJson<List<GasolineStationDto>?>(stations.orEmpty())
+    fun toGasolineStationDto(stations: String?) = gson.fromJson<List<GasolineStationEntity>?>(stations.orEmpty())
 
     @TypeConverter
     fun fromGasolineType(types: List<GasolineType>?): String? =
