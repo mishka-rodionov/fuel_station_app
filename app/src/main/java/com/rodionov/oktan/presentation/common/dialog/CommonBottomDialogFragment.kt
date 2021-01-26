@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.rodionov.oktan.R
+import com.rodionov.oktan.app.extension.setData
 import com.rodionov.oktan.presentation.common.delegates.*
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 
@@ -44,7 +45,15 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 //        rvBottomSheetDialog.layoutManager = LinearLayoutManager(activity)
 //        rvBottomSheetDialog.adapter = bottomDialogAdapter
 
-        bottomDialogAdapter.items = listOf(Unit, FirstLevelParameters(), SecondLevelParameters())
+        vpFuelStationCreate.isUserInputEnabled = false
+        ivVpBack.setOnClickListener {
+            vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem - 1, true)
+        }
+        ivVpForward.setOnClickListener {
+            vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem + 1, true)
+        }
+        bottomDialogAdapter.setData(listOf(Unit, FirstLevelParameters(), SecondLevelParameters()))
+//        vpFuelStationCreate.setCurrentItem(1, true)
     }
 
     interface BottomSheetDialogListener {

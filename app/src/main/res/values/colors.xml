@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorLightHint">#9E9E9E</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorCommonBackGround">#CECDCD</color>
     <color name="colorWhiteTransparent">#1FFFFFFF</color>
     <color name="colorWhiteLightTransparent">#B3FFFFFF</color>
