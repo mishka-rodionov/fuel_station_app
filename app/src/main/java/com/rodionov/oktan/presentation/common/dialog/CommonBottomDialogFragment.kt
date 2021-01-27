@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.rodionov.oktan.R
+import com.rodionov.oktan.app.extension.gone
 import com.rodionov.oktan.app.extension.setData
+import com.rodionov.oktan.app.extension.show
 import com.rodionov.oktan.presentation.common.delegates.*
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 
@@ -45,7 +48,7 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 //        rvBottomSheetDialog.layoutManager = LinearLayoutManager(activity)
 //        rvBottomSheetDialog.adapter = bottomDialogAdapter
 
-        vpFuelStationCreate.isUserInputEnabled = false
+//        vpFuelStationCreate.isUserInputEnabled = false
         ivVpBack.setOnClickListener {
             vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem - 1, true)
         }
@@ -53,6 +56,35 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
             vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem + 1, true)
         }
         bottomDialogAdapter.setData(listOf(Unit, FirstLevelParameters(), SecondLevelParameters()))
+        vpFuelStationCreate.registerOnPageChangeCallback(
+                object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    }
+
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        when(position){
+                            0 -> {
+                                ivVpBack.gone()
+                                ivVpForward.show()
+                            }
+                            1 -> {
+                                ivVpBack.show()
+                                ivVpForward.show()
+                            }
+                            2 -> {
+                                ivVpBack.show()
+                                ivVpForward.gone()
+                            }
+                        }
+                    }
+
+                    override fun onPageScrollStateChanged(state: Int) {
+                        super.onPageScrollStateChanged(state)
+                    }
+                }
+        )
 //        vpFuelStationCreate.setCurrentItem(1, true)
     }
 

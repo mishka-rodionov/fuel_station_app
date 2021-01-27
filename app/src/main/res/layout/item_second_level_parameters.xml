@@ -1,6 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilServices"
+        style="@style/TextInputLayoutExposed"
+        android:layout_marginTop="@dimen/default_margin_16"
+        android:hint="@string/hint_services"
+        android:inputType="none"
+        app:helperText="@string/hint_brand_helper">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chbGasoline92"
+            style="@style/CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_32"
+            android:text="@string/label_92"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPrice92"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_marginTop="@dimen/default_margin_8"
+            android:hint="@string/hint_price"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPrice92"
+                style="@style/EditTextOutlined"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chbGasoline95"
+            style="@style/CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_32"
+            android:text="@string/label_95"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPrice95"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_marginTop="@dimen/default_margin_8"
+            android:hint="@string/hint_price"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPrice95"
+                style="@style/EditTextOutlined"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/chbGasoline98"
+            style="@style/CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_32"
+            android:text="@string/label_98"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPrice98"
+            style="@style/TextInputLayoutOutlined"
+            android:layout_marginTop="@dimen/default_margin_8"
+            android:hint="@string/hint_price"
+            app:errorEnabled="true"
+            app:errorTextColor="@color/colorError"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPrice98"
+                style="@style/EditTextOutlined"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCreateGasolineStation"
+        style="@style/Button"
+        android:text="@string/btn_create"
+        android:layout_gravity="end"/>
+
+</LinearLayout>

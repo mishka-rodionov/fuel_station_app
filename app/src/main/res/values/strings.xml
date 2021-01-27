@@ -6,16 +6,23 @@
     <string name="btn_ok">OK</string>
     <string name="btn_cancel">Отмена</string>
     <string name="btn_add">Добавить</string>
+    <string name="btn_create">Создать</string>
 
     <!--    Hint-->
     <string name="hint_brand">Торговая марка</string>
     <string name="hint_active_status">Статус</string>
     <string name="hint_active_status_helper">Статус заправочной станции (открыта, закрыта, на ремонте)</string>
     <string name="hint_brand_helper">Торговая марка поставщика топлива.</string>
+    <string name="hint_services">Услуги</string>
+    <string name="hint_price">Цена</string>
 
     <!--    Labels-->
     <string name="label_latitude">Широта</string>
     <string name="label_longitude">Долгота</string>
+    <string name="label_92">АИ-92</string>
+    <string name="label_95">АИ-95</string>
+    <string name="label_98">АИ-98</string>
+    <string name="label_100">АИ-100</string>
 
     <!--    Bottom menu labels-->
     <string name="bottom_menu_map">Карта</string>
@@ -37,5 +44,14 @@
         <item>Открыта</item>
         <item>На ремонте</item>
         <item>Закрыта</item>
+    </string-array>
+
+    <string-array name="services">
+        <item>Мойка</item>
+        <item>Подкачка шин</item>
+        <item>Пылесос</item>
+        <item>Туалет</item>
+        <item>Шиномонтаж</item>
+        <item>Банковский терминал</item>
     </string-array>
 </resources>
