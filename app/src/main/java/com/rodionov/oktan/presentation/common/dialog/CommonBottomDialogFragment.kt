@@ -13,7 +13,9 @@ import com.rodionov.oktan.app.extension.gone
 import com.rodionov.oktan.app.extension.setData
 import com.rodionov.oktan.app.extension.show
 import com.rodionov.oktan.presentation.common.delegates.*
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
+import kotlinx.android.synthetic.main.item_second_level_parameters.*
 
 class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 
@@ -49,6 +51,7 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 //        rvBottomSheetDialog.adapter = bottomDialogAdapter
 
 //        vpFuelStationCreate.isUserInputEnabled = false
+
         ivVpBack.setOnClickListener {
             vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem - 1, true)
         }
@@ -87,6 +90,8 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
         )
 //        vpFuelStationCreate.setCurrentItem(1, true)
     }
+
+
 
     interface BottomSheetDialogListener {
         fun onItemDialogClick(itemDialog: ItemDialog)

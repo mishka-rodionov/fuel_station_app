@@ -3,27 +3,125 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="@dimen/default_margin_16"
     android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilServices"
-        style="@style/TextInputLayoutExposed"
-        android:layout_marginTop="@dimen/default_margin_16"
-        android:hint="@string/hint_services"
-        android:inputType="none"
-        app:helperText="@string/hint_brand_helper">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/tilServices"-->
+<!--        style="@style/TextInputLayoutExposed"-->
+<!--        android:layout_marginTop="@dimen/default_margin_16"-->
+<!--        android:hint="@string/hint_services"-->
+<!--        android:inputType="none"-->
+<!--        app:helperText="@string/hint_brand_helper">-->
 
-        <AutoCompleteTextView
-            android:id="@+id/actvServices"
-            android:layout_width="match_parent"
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/actvServices"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:focusable="false"-->
+<!--            android:inputType="none" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivCafe"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:src="@drawable/ic_cafe"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivCarWash"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivCarWash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_car_wash"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toEndOf="@+id/ivCafe"
+            app:layout_constraintEnd_toStartOf="@+id/ivWC"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivWC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_wc"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toEndOf="@+id/ivCarWash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivATM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:src="@drawable/ic_atm"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivVacuum"
+            app:layout_constraintTop_toBottomOf="@id/ivCafe"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivVacuum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:src="@drawable/ic_vacuum"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toEndOf="@+id/ivATM"
+            app:layout_constraintEnd_toStartOf="@+id/ivWiFi"
+            app:layout_constraintTop_toBottomOf="@id/ivCafe"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivWiFi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:src="@drawable/ic_wifi"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toEndOf="@+id/ivVacuum"
+            app:layout_constraintEnd_toStartOf="@+id/ivTirePressure"
+            app:layout_constraintTop_toBottomOf="@id/ivCafe"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivTirePressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:src="@drawable/ic_tire_pressure"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="@dimen/default_margin_2"
+            app:layout_constraintStart_toEndOf="@+id/ivWiFi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCafe"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_16"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
