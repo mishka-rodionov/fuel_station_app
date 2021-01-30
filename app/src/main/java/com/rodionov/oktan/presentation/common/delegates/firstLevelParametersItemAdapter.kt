@@ -6,7 +6,7 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import kotlinx.android.synthetic.main.item_first_level_parameters.view.*
 
-fun itemFirstLevelAdapter(gasolineStation: GasolineStation) = adapterDelegateLayoutContainer<FirstLevelParameters, Any>(R.layout.item_first_level_parameters) {
+fun itemFirstLevelAdapter(gasolineStation: GasolineStation?) = adapterDelegateLayoutContainer<FirstLevelParameters, Any>(R.layout.item_first_level_parameters) {
 
     bind {
         containerView.actvBrand.setAdapter(
@@ -26,10 +26,10 @@ fun itemFirstLevelAdapter(gasolineStation: GasolineStation) = adapterDelegateLay
         )
 
         containerView.actvBrand.setOnItemClickListener { parent, view, position, id ->
-            gasolineStation.brand = parent.adapter.getItem(position).toString()
+            gasolineStation?.brand = parent.adapter.getItem(position).toString()
         }
         containerView.actvActiveStatus.setOnItemClickListener { parent, view, position, id ->
-            gasolineStation.activeStatus = when (parent.adapter.getItem(position).toString()) {
+            gasolineStation?.activeStatus = when (parent.adapter.getItem(position).toString()) {
                 "Открыта" -> true
                 else -> false
             }

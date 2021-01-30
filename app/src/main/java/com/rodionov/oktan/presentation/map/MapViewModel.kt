@@ -23,7 +23,7 @@ class MapViewModel(
 //    init {
 //        mapRepository.getFuelStations(onSuccess = ::handleFuelStations, onError = ::handleError)
 //    }
-    fun createFuelStation(fuelStation: FuelStation) {
+    fun createFuelStation(fuelStation: FuelStation?) {
         when(fuelStation) {
             is GasolineStation -> {
                 createGasolineStation(fuelStation)

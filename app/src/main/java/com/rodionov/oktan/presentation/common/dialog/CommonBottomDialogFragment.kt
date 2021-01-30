@@ -12,13 +12,14 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.app.extension.gone
 import com.rodionov.oktan.app.extension.setData
 import com.rodionov.oktan.app.extension.show
+import com.rodionov.oktan.data.entities.model.FuelStation
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.presentation.common.delegates.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 import kotlinx.android.synthetic.main.item_second_level_parameters.*
 
-class CommonBottomDialogFragment : BottomSheetDialogFragment() {
+class CommonBottomDialogFragment(private val createFuelStation: (FuelStation?) -> Unit) : BottomSheetDialogFragment() {
 
     private var listener: BottomSheetDialogListener? = null
     private var gasolineStation: GasolineStation? = null
@@ -26,9 +27,9 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
-                selectFuelStationTypeAdapter(),
-                itemFirstLevelAdapter(),
-                secondLevelParametersItemAdapter()
+                selectFuelStationTypeAdapter(gasolineStation),
+                itemFirstLevelAdapter(gasolineStation),
+                secondLevelParametersItemAdapter(gasolineStation, createFuelStation)
         )
     }
 
@@ -92,16 +93,16 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
         fun onItemDialogClick(itemDialog: ItemDialog)
     }
 
-    companion object {
-        private const val ARG_ITEMS = "items"
-        private const val ARG_TITLE = "title"
-
-        fun newInstance(items: List<ItemDialog> = emptyList(), title: String = "") =
-                CommonBottomDialogFragment().apply {
-                    arguments = bundleOf(
-                            ARG_ITEMS to items,
-                            ARG_TITLE to title
-                    )
-                }
-    }
+//    companion object {
+//        private const val ARG_ITEMS = "items"
+//        private const val ARG_TITLE = "title"
+//
+//        fun newInstance(items: List<ItemDialog> = emptyList(), title: String = "") =
+//                CommonBottomDialogFragment().apply {
+//                    arguments = bundleOf(
+//                            ARG_ITEMS to items,
+//                            ARG_TITLE to title
+//                    )
+//                }
+//    }
 }

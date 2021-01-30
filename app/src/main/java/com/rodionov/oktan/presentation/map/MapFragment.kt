@@ -80,13 +80,14 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
     }
 
     private fun showBottomSheetDialog() {
-        val dialog = CommonBottomDialogFragment.newInstance(
+        val dialog = CommonBottomDialogFragment(viewModel::createFuelStation)
+//                .newInstance(
 //                items = listOf(
 //                        ItemDialog(R.drawable.ic_camera, R.string.label_camera),
 //                        ItemDialog(R.drawable.ic_folder_gray, R.string.label_document),
 //                        ItemDialog(R.drawable.ic_gallery, R.string.label_gallery)
 //                ), title = getString(R.string.label_title_doc_upload_bottom_sheet)
-        )
+//        )
         dialog.setTargetFragment(this, 0)
         dialog.show(parentFragmentManager, "DocUploadFragmentDialog")
     }

@@ -14,5 +14,5 @@ class GasolineStation(
         dateOfCreation: Long?,
         creatorId: String?,
         activeStatus: Boolean?,
-        val gasolineTypes: List<GasolineType>? = null
+        var gasolineTypes: List<GasolineType>? = null
 ) : FuelStation(type = type, services = services, coordinates = coordinates, brand = brand, id = id, dateOfCreation = dateOfCreation, creatorId = creatorId, activeStatus = activeStatus)
