@@ -3,9 +3,10 @@ package com.rodionov.oktan.presentation.common.delegates
 import android.widget.ArrayAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 import com.rodionov.oktan.R
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import kotlinx.android.synthetic.main.item_first_level_parameters.view.*
 
-fun itemFirstLevelAdapter() = adapterDelegateLayoutContainer<FirstLevelParameters, Any>(R.layout.item_first_level_parameters) {
+fun itemFirstLevelAdapter(gasolineStation: GasolineStation) = adapterDelegateLayoutContainer<FirstLevelParameters, Any>(R.layout.item_first_level_parameters) {
 
     bind {
         containerView.actvBrand.setAdapter(
@@ -23,6 +24,16 @@ fun itemFirstLevelAdapter() = adapterDelegateLayoutContainer<FirstLevelParameter
                         context.resources.getStringArray(R.array.statuses)
                 )
         )
+
+        containerView.actvBrand.setOnItemClickListener { parent, view, position, id ->
+            gasolineStation.brand = parent.adapter.getItem(position).toString()
+        }
+        containerView.actvActiveStatus.setOnItemClickListener { parent, view, position, id ->
+            gasolineStation.activeStatus = when (parent.adapter.getItem(position).toString()) {
+                "Открыта" -> true
+                else -> false
+            }
+        }
     }
 }
 

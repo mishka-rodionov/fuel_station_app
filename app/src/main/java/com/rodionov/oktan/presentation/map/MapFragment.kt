@@ -79,7 +79,7 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
     }
 
-    protected fun showBottomSheetDialog() {
+    private fun showBottomSheetDialog() {
         val dialog = CommonBottomDialogFragment.newInstance(
 //                items = listOf(
 //                        ItemDialog(R.drawable.ic_camera, R.string.label_camera),

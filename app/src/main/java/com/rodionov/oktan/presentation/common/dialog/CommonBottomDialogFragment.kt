@@ -12,6 +12,7 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.app.extension.gone
 import com.rodionov.oktan.app.extension.setData
 import com.rodionov.oktan.app.extension.show
+import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.presentation.common.delegates.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.item_second_level_parameters.*
 class CommonBottomDialogFragment : BottomSheetDialogFragment() {
 
     private var listener: BottomSheetDialogListener? = null
+    private var gasolineStation: GasolineStation? = null
 
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
@@ -61,13 +63,10 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
         bottomDialogAdapter.setData(listOf(Unit, FirstLevelParameters(), SecondLevelParameters()))
         vpFuelStationCreate.registerOnPageChangeCallback(
                 object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                    }
 
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        when(position){
+                        when (position) {
                             0 -> {
                                 ivVpBack.gone()
                                 ivVpForward.show()
@@ -83,14 +82,10 @@ class CommonBottomDialogFragment : BottomSheetDialogFragment() {
                         }
                     }
 
-                    override fun onPageScrollStateChanged(state: Int) {
-                        super.onPageScrollStateChanged(state)
-                    }
                 }
         )
 //        vpFuelStationCreate.setCurrentItem(1, true)
     }
-
 
 
     interface BottomSheetDialogListener {
