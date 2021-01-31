@@ -69,7 +69,7 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
             mapboxMap.addOnMapLongClickListener { point ->
                 Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
 //                CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
-                showBottomSheetDialog()
+                showBottomSheetDialog(point)
                 true
             }
 //            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition()), 2000)
@@ -79,8 +79,8 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
     }
 
-    private fun showBottomSheetDialog() {
-        val dialog = CommonBottomDialogFragment(viewModel::createFuelStation)
+    private fun showBottomSheetDialog(point: LatLng) {
+        val dialog = CommonBottomDialogFragment(viewModel::createFuelStation, Coordinates(latitude = point.latitude, longitude = point.longitude))
 //                .newInstance(
 //                items = listOf(
 //                        ItemDialog(R.drawable.ic_camera, R.string.label_camera),

@@ -12,6 +12,7 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.app.extension.gone
 import com.rodionov.oktan.app.extension.setData
 import com.rodionov.oktan.app.extension.show
+import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStation
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.presentation.common.delegates.*
@@ -19,22 +20,29 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
 import kotlinx.android.synthetic.main.item_second_level_parameters.*
 
-class CommonBottomDialogFragment(private val createFuelStation: (FuelStation?) -> Unit) : BottomSheetDialogFragment() {
+class CommonBottomDialogFragment(
+        private val createFuelStation: (FuelStation?) -> Unit,
+        private val fuelStationCoordinates: Coordinates?
+) : BottomSheetDialogFragment() {
 
     private var listener: BottomSheetDialogListener? = null
-    private var gasolineStation: GasolineStation? = null
+    private var gasolineStation: GasolineStation? = GasolineStation()
 
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
                 selectFuelStationTypeAdapter(gasolineStation),
                 itemFirstLevelAdapter(gasolineStation),
-                secondLevelParametersItemAdapter(gasolineStation, createFuelStation)
+                secondLevelParametersItemAdapter(gasolineStation, createFuelStation, ::dismissDialog)
         )
     }
 
     private val clickListener: (ItemDialog) -> Unit = {
         listener?.onItemDialogClick(it)
+        dismiss()
+    }
+
+    private fun dismissDialog() {
         dismiss()
     }
 
@@ -45,6 +53,7 @@ class CommonBottomDialogFragment(private val createFuelStation: (FuelStation?) -
     ): View? = LayoutInflater.from(context).inflate(R.layout.dialog_bottom_sheet, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        gasolineStation?.coordinates = this.fuelStationCoordinates
         listener = targetFragment as? BottomSheetDialogListener
 //        val items = arguments?.getSerializable(ARG_ITEMS) as? List<ItemDialog>
 //        val title = arguments?.getString(ARG_TITLE)
