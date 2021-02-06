@@ -150,7 +150,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPrice92"
                 style="@style/EditTextOutlined"
-                android:inputType="text" />
+                android:inputType="numberDecimal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +187,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPrice95"
                 style="@style/EditTextOutlined"
-                android:inputType="text" />
+                android:inputType="numberDecimal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -224,7 +224,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPrice98"
                 style="@style/EditTextOutlined"
-                android:inputType="text" />
+                android:inputType="numberDecimal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
