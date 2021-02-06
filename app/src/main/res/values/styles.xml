@@ -75,6 +75,18 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+    <style name="SystemNotificationCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/default_margin_16</item>
+        <item name="cornerSizeTopLeft">@dimen/default_margin_16</item>
+        <item name="cornerSizeBottomRight">@dimen/default_margin_16</item>
+        <item name="cornerSizeBottomLeft">@dimen/default_margin_16</item>
+    </style>
+
     <style name="TextInputLayoutOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
