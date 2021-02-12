@@ -6,6 +6,7 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.geojson.Point
@@ -32,7 +33,11 @@ import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import com.rodionov.oktan.app.extension.setData
+import com.rodionov.oktan.presentation.common.delegates.*
 import com.rodionov.oktan.presentation.common.dialog.CommonBottomDialogFragment
+import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
+import kotlinx.android.synthetic.main.fragment_map.vpFuelStationCreate
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 
@@ -44,6 +49,21 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
     override val screenViewModel by lazy { viewModel }
 
     lateinit var mapboxMap: MapboxMap
+
+    private var gasolineStation: GasolineStation? = GasolineStation()
+
+    private val bottomDialogAdapter by lazy {
+        ListDelegationAdapter(
+//            bottomDialogDelegate(clickListener)
+                selectFuelStationTypeAdapter(gasolineStation),
+                itemFirstLevelAdapter(gasolineStation),
+                secondLevelParametersItemAdapter(gasolineStation, viewModel::createFuelStation, ::dismissDialog)
+        )
+    }
+
+    private fun dismissDialog() {
+        mlMap.transitionToStart()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,16 +86,25 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 //                }
             }
 
+            mapboxMap.addOnMapClickListener {
+                mlMap.transitionToStart()
+                true
+            }
+
             mapboxMap.addOnMapLongClickListener { point ->
                 Log.d("LOG_TAG", "onMapClick: latitude = ${point.latitude}, longitude = ${point.longitude}, altitude = ${point.altitude}")
 //                CreateFuelStationDialog(Coordinates(latitude = point.latitude, longitude = point.longitude), ::handleCreateGasolineStation).show(childFragmentManager, "123")
-                showBottomSheetDialog(point)
+//                showBottomSheetDialog(point)
+                gasolineStation?.coordinates = Coordinates(latitude = point.latitude, longitude = point.longitude)
+                mlMap.transitionToEnd()
                 true
             }
 //            mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(setCameraPosition()), 2000)
             requestLocationWithPermissionCheck()
             viewModel.getAllGasolineStation()
         }
+        vpFuelStationCreate.adapter = bottomDialogAdapter
+        bottomDialogAdapter.setData(listOf(Unit, FirstLevelParameters(), SecondLevelParameters()))
 
     }
 

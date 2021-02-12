@@ -47,11 +47,20 @@
     </ConstraintSet>
 
     <Transition
-        app:constraintSetEnd="@id/end"
-        app:constraintSetStart="@+id/start"
-        app:duration="1000">
+        app:constraintSetEnd="@id/start"
+        app:constraintSetStart="@id/end">
 
-        <OnClick app:targetId="@id/btnTest" />
+        <OnClick
+            app:targetId="@+id/mapView"/>btnCreateGasolineStation
 
     </Transition>
+
+<!--    <Transition-->
+<!--        app:constraintSetEnd="@id/end"-->
+<!--        app:constraintSetStart="@+id/start"-->
+<!--        app:duration="1000">-->
+
+<!--        <OnClick app:targetId="@id/btnTest" />-->
+
+<!--    </Transition>-->
 </MotionScene>
