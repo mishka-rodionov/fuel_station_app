@@ -1,4 +1,4 @@
-package com.rodionov.oktan.data.database.dto
+package com.rodionov.oktan.data.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -3,7 +3,7 @@ package com.rodionov.oktan.data.database.converters
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.rodionov.oktan.app.extension.fromJson
-import com.rodionov.oktan.data.database.dto.GasolineStationEntity
+import com.rodionov.oktan.data.database.entity.GasolineStationEntity
 import com.rodionov.oktan.data.entities.model.Coordinates
 import com.rodionov.oktan.data.entities.model.FuelStationServices
 import com.rodionov.oktan.data.entities.model.electric.ChargeType

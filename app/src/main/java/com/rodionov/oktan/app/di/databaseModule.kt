@@ -10,6 +10,7 @@ val databaseModule = module {
     single { getGasStationDao(get()) }
     single { getChargingStationDao(get()) }
     single { getRemoteGasolineKeyDao(get()) }
+    single { getBrandsDao(get()) }
 }
 
 fun provideDatabase(context: Context) = FuelStationDatabase.buildDatabase(context)
@@ -17,3 +18,4 @@ fun getGasolineStationDao(fuelStationDatabase: FuelStationDatabase) = fuelStatio
 fun getGasStationDao(fuelStationDatabase: FuelStationDatabase) = fuelStationDatabase.gasStationDao()
 fun getChargingStationDao(fuelStationDatabase: FuelStationDatabase) = fuelStationDatabase.chargingStationDao()
 fun getRemoteGasolineKeyDao(fuelStationDatabase: FuelStationDatabase) = fuelStationDatabase.remoteGasolineKeyDao()
+fun getBrandsDao(fuelStationDatabase: FuelStationDatabase) = fuelStationDatabase.brandsDao()

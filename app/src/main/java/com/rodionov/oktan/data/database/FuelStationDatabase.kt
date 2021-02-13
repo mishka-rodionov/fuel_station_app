@@ -5,22 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.rodionov.oktan.data.database.FuelStationDatabase.Companion.DATABASE_VERSION
-import com.rodionov.oktan.data.database.dao.ChargingStationDao
-import com.rodionov.oktan.data.database.dao.GasStationDao
-import com.rodionov.oktan.data.database.dao.GasolineStationDao
-import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
-import com.rodionov.oktan.data.database.dto.ChargingStationEntity
-import com.rodionov.oktan.data.database.dto.GasStationEntity
-import com.rodionov.oktan.data.database.dto.GasolineStationEntity
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyEntity
+import com.rodionov.oktan.data.database.dao.*
+import com.rodionov.oktan.data.database.entity.*
 
-@Database(entities = [GasolineStationEntity::class, GasStationEntity::class, ChargingStationEntity::class, RemoteGasolineKeyEntity::class], version = DATABASE_VERSION, exportSchema = false)
-abstract class FuelStationDatabase: RoomDatabase() {
+@Database(entities = [
+    GasolineStationEntity::class,
+    GasStationEntity::class,
+    ChargingStationEntity::class,
+    RemoteGasolineKeyEntity::class,
+    BrandEntity::class], version = DATABASE_VERSION, exportSchema = false)
+abstract class FuelStationDatabase : RoomDatabase() {
 
     abstract fun gasolineStationDao(): GasolineStationDao
     abstract fun gasStationDao(): GasStationDao
     abstract fun chargingStationDao(): ChargingStationDao
     abstract fun remoteGasolineKeyDao(): RemoteGasolineKeyDao
+    abstract fun brandsDao(): BrandsDao
 
     companion object {
         const val DATABASE_VERSION = 1

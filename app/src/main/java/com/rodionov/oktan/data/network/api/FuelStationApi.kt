@@ -32,6 +32,9 @@ interface FuelStationApi {
     @POST(NEW_GASOLINE_STATION)
     fun setGasolineStation(@Body gasolineStationRequest: GasolineStationRequest) : Observable<GasolineStationResponse>
 
+    @GET(GET_ALL_BRANDS)
+    fun getAllFuelStationsBrands()
+
     companion object {
         const val GET_FUEL_STATIONS = "/fuel_stations"
         const val GET_GASOLINE_STATIONS = "/gasoline_stations"
@@ -39,6 +42,7 @@ interface FuelStationApi {
         const val GET_GAS_STATIONS = "/gas_stations"
         const val GET_CHARGING_STATIONS = "/charging_stations"
         const val NEW_GASOLINE_STATION = "/gasoline_station/new"
+        const val GET_ALL_BRANDS = "/fuel_station/brands"
     }
 
 }

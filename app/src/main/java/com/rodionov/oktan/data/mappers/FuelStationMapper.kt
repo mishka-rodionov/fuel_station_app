@@ -1,6 +1,6 @@
 package com.rodionov.oktan.data.mappers
 
-import com.rodionov.oktan.data.database.dto.GasolineStationEntity
+import com.rodionov.oktan.data.database.entity.GasolineStationEntity
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.entities.request.GasolineStationRequest
 import com.rodionov.oktan.data.entities.response.GasolineStationResponse

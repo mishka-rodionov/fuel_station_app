@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rodionov.oktan.data.database.dto.ChargingStationEntity
+import com.rodionov.oktan.data.database.entity.ChargingStationEntity
 import io.reactivex.rxjava3.core.Flowable
 
 @Dao

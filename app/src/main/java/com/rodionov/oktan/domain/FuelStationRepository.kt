@@ -1,7 +1,7 @@
 package com.rodionov.oktan.domain
 
 import androidx.paging.PagingData
-import com.rodionov.oktan.data.database.dto.GasolineStationEntity
+import com.rodionov.oktan.data.database.entity.GasolineStationEntity
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import io.reactivex.rxjava3.core.Flowable
 

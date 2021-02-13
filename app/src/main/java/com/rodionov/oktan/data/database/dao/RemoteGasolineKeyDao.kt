@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyEntity
+import com.rodionov.oktan.data.database.entity.RemoteGasolineKeyEntity
 
 @Dao
 interface RemoteGasolineKeyDao {

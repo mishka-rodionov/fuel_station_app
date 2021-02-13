@@ -6,8 +6,8 @@ import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxRemoteMediator
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
 import com.rodionov.oktan.data.database.dao.RemoteGasolineKeyDao
-import com.rodionov.oktan.data.database.dto.GasolineStationEntity
-import com.rodionov.oktan.data.database.dto.RemoteGasolineKeyEntity
+import com.rodionov.oktan.data.database.entity.GasolineStationEntity
+import com.rodionov.oktan.data.database.entity.RemoteGasolineKeyEntity
 import com.rodionov.oktan.data.entities.request.GasolineStationListRequest
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
