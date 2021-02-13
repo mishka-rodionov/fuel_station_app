@@ -34,6 +34,7 @@ import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.rodionov.oktan.app.extension.setData
+import com.rodionov.oktan.data.entities.model.FuelStationType
 import com.rodionov.oktan.presentation.common.delegates.*
 import com.rodionov.oktan.presentation.common.dialog.CommonBottomDialogFragment
 import kotlinx.android.synthetic.main.dialog_bottom_sheet.*
@@ -55,7 +56,7 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
-                selectFuelStationTypeAdapter(gasolineStation),
+                selectFuelStationTypeAdapter(gasolineStation, ::fuelStationClicked),
                 itemFirstLevelAdapter(gasolineStation),
                 secondLevelParametersItemAdapter(gasolineStation, viewModel::createFuelStation, ::dismissDialog)
         )
@@ -63,6 +64,10 @@ class MapFragment : BaseFragment(R.layout.fragment_map) {
 
     private fun dismissDialog() {
         mlMap.transitionToStart()
+    }
+
+    private fun fuelStationClicked(type: FuelStationType) {
+        vpFuelStationCreate.setCurrentItem(vpFuelStationCreate.currentItem + 1, true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

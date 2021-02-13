@@ -31,7 +31,7 @@ class CommonBottomDialogFragment(
     private val bottomDialogAdapter by lazy {
         ListDelegationAdapter(
 //            bottomDialogDelegate(clickListener)
-                selectFuelStationTypeAdapter(gasolineStation),
+//                selectFuelStationTypeAdapter(gasolineStation),
                 itemFirstLevelAdapter(gasolineStation),
                 secondLevelParametersItemAdapter(gasolineStation, createFuelStation, ::dismissDialog)
         )
