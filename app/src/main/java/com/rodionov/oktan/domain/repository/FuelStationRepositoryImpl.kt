@@ -1,4 +1,4 @@
-package com.rodionov.oktan.data.repository
+package com.rodionov.oktan.domain.repository
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager

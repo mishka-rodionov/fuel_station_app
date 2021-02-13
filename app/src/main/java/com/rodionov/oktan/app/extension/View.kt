@@ -8,7 +8,9 @@ import android.text.style.UnderlineSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.rodionov.oktan.R
 
 fun TextView.setTextOrHide(value: String?) {
@@ -51,4 +53,22 @@ fun TextView.setSpannablePrimaryText(primaryText: String, text: String, addSpace
 
 fun TextInputEditText.trimmedText(): String {
     return this.text.toString().trim()
+}
+
+fun TextInputLayout.validateField(
+        condition: Boolean = this.editText?.text.toString().trim().isEmpty(),
+        errorText: Int = R.string.error_empty_field
+): Boolean {
+    if (condition) {
+        this.error = context.getString(errorText)
+        return false
+    }
+    return true
+}
+
+fun TextInputLayout.clearError() {
+    this.editText?.doAfterTextChanged {
+        if (this.isErrorEnabled)
+            this.isErrorEnabled = false
+    }
 }

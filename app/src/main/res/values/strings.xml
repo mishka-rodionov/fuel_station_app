@@ -8,6 +8,9 @@
     <string name="btn_add">Добавить</string>
     <string name="btn_create">Создать</string>
 
+    <!--    Errors-->
+    <string name="error_empty_field">Поле должно быть заполнено.</string>
+
     <!--    Hint-->
     <string name="hint_brand">Торговая марка</string>
     <string name="hint_active_status">Статус</string>

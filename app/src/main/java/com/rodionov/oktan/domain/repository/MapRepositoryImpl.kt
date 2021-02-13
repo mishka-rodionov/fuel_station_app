@@ -1,4 +1,4 @@
-package com.rodionov.oktan.data.repository
+package com.rodionov.oktan.domain.repository
 
 import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG

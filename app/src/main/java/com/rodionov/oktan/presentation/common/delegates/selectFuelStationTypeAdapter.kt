@@ -6,6 +6,7 @@ import com.rodionov.oktan.R
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.entities.model.FuelStationType
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_select_fuel_station_type.view.*
 
 fun selectFuelStationTypeAdapter(gasolineStation: GasolineStation?) = adapterDelegateLayoutContainer<Unit, Any>(R.layout.item_select_fuel_station_type) {
@@ -13,16 +14,25 @@ fun selectFuelStationTypeAdapter(gasolineStation: GasolineStation?) = adapterDel
     bind {
         containerView.ivGasolineStationType.setOnClickListener {
             gasolineStation?.type = FuelStationType.GASOLINE
+            (it as CircleImageView).borderColor = context.resources.getColor(R.color.colorPrimary)
+            containerView.ivGasStationType.borderColor = context.resources.getColor(R.color.colorWhite)
+            containerView.ivChargingStationType.borderColor = context.resources.getColor(R.color.colorWhite)
             Log.d(TAG, "ivGasolineStationType: ")
         }
 
         containerView.ivGasStationType.setOnClickListener {
             gasolineStation?.type = FuelStationType.GAS
+            (it as CircleImageView).borderColor = context.resources.getColor(R.color.colorPrimary)
+            containerView.ivGasolineStationType.borderColor = context.resources.getColor(R.color.colorWhite)
+            containerView.ivChargingStationType.borderColor = context.resources.getColor(R.color.colorWhite)
             Log.d(TAG, "ivGasStationType: ")
         }
 
         containerView.ivChargingStationType.setOnClickListener {
             gasolineStation?.type = FuelStationType.ELECTRIC
+            (it as CircleImageView).borderColor = context.resources.getColor(R.color.colorPrimary)
+            containerView.ivGasolineStationType.borderColor = context.resources.getColor(R.color.colorWhite)
+            containerView.ivGasStationType.borderColor = context.resources.getColor(R.color.colorWhite)
             Log.d(TAG, "ivChargingStationType: ")
         }
     }

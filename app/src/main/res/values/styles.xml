@@ -83,8 +83,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">@dimen/default_margin_16</item>
         <item name="cornerSizeTopLeft">@dimen/default_margin_16</item>
-        <item name="cornerSizeBottomRight">@dimen/default_margin_16</item>
-        <item name="cornerSizeBottomLeft">@dimen/default_margin_16</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
     <style name="TextInputLayoutOutlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.View
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateLayoutContainer
 import com.rodionov.oktan.R
+import com.rodionov.oktan.app.extension.clearError
+import com.rodionov.oktan.app.extension.validateField
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.entities.model.FuelStation
 import com.rodionov.oktan.data.entities.model.FuelStationServices
@@ -18,6 +20,9 @@ import kotlinx.android.synthetic.main.item_second_level_parameters.view.*
 fun secondLevelParametersItemAdapter(gasolineStation: GasolineStation?, clickListener: (FuelStation?) -> Unit, dismissDialog: () -> Unit) = adapterDelegateLayoutContainer<SecondLevelParameters, Any>(R.layout.item_second_level_parameters) {
 
     bind {
+        containerView.tilPrice92.clearError()
+        containerView.tilPrice95.clearError()
+        containerView.tilPrice98.clearError()
         containerView.ivATM.setOnClickListener { enableService(it, context, gasolineStation, FuelStationServices.BANK_TERMINAL) }
         containerView.ivVacuum.setOnClickListener { enableService(it, context, gasolineStation, FuelStationServices.VACUUM_CLEANER) }
         containerView.ivWC.setOnClickListener { enableService(it, context, gasolineStation, FuelStationServices.WC) }
@@ -26,6 +31,9 @@ fun secondLevelParametersItemAdapter(gasolineStation: GasolineStation?, clickLis
         containerView.ivCarWash.setOnClickListener { enableService(it, context, gasolineStation, FuelStationServices.CAR_WASH) }
         containerView.ivTirePressure.setOnClickListener { enableService(it, context, gasolineStation, FuelStationServices.TIRES_INFLATION) }
         containerView.btnCreateGasolineStation.setOnClickListener {
+                if(!containerView.tilPrice92.validateField())  return@setOnClickListener
+                if(!containerView.tilPrice95.validateField())  return@setOnClickListener
+                if(!containerView.tilPrice98.validateField())  return@setOnClickListener
                 if(containerView.chbGasoline92.isChecked) {
                     val gasolineTypes = gasolineStation?.gasolineTypes?.toMutableList()
                     gasolineTypes?.add(GasolineType(GasolineName.AI92, containerView.etPrice92.text.toString().trim().toFloat()))
@@ -51,9 +59,7 @@ fun secondLevelParametersItemAdapter(gasolineStation: GasolineStation?, clickLis
             dismissDialog.invoke()
         }
     }
-
 }
-
 
 class SecondLevelParameters {
     companion object {
