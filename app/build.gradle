@@ -32,6 +32,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         def BASE_URL = "BASE_URL"
 //        def REALM_SCHEMA_VERSION = "REALM_SCHEMA_VERSION"
