@@ -12,7 +12,7 @@ import com.rodionov.oktan.data.entities.model.FuelStationType
 data class BrandEntity(
         @PrimaryKey
         @ColumnInfo(name = "name")
-        val name: String? = null,
+        val name: String,
         @ColumnInfo(name = "fuelStationType")
         val fuelStationType: FuelStationType? = null
 )
