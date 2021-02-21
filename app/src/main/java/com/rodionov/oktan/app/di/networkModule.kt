@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.rodionov.oktan.BuildConfig
 import com.rodionov.oktan.data.network.api.FuelStationApi
+import com.rodionov.oktan.data.network.api.MapFuelStationApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -18,12 +19,17 @@ val networkModule = module {
 //    single { buildAuthInterceptor(get()) }
     single { buildRetrofit(get(), get()) }
     single { buildFuelStationsApi(get()) }
+    single { buildMapFuelStationApi(get()) }
 }
 
 const val TIMEOUT: Long = 30
 
-private fun buildFuelStationsApi(retrofit: Retrofit) : FuelStationApi {
+private fun buildFuelStationsApi(retrofit: Retrofit): FuelStationApi {
     return retrofit.create(FuelStationApi::class.java)
+}
+
+private fun buildMapFuelStationApi(retrofit: Retrofit): MapFuelStationApi {
+    return retrofit.create(MapFuelStationApi::class.java)
 }
 
 private fun buildJson() = GsonBuilder().create()

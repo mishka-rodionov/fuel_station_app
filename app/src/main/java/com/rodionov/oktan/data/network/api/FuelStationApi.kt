@@ -23,26 +23,10 @@ interface FuelStationApi {
     @POST(GET_GASOLINE_STATION_LIST)
     fun getGasolineStationList(@Body gasolineStationListRequest: GasolineStationListRequest): Single<List<GasolineStationResponse>>
 
-    @GET(GET_GAS_STATIONS)
-    fun getGasStations(): Observable<List<GasStationResponse>>
-
-    @GET(GET_CHARGING_STATIONS)
-    fun getChargingStations(): Observable<List<ChargingStationResponse>>
-
-    @POST(NEW_GASOLINE_STATION)
-    fun setGasolineStation(@Body gasolineStationRequest: GasolineStationRequest) : Observable<GasolineStationResponse>
-
-    @GET(GET_ALL_BRANDS)
-    fun getAllFuelStationsBrands()
-
     companion object {
         const val GET_FUEL_STATIONS = "/fuel_stations"
         const val GET_GASOLINE_STATIONS = "/gasoline_stations"
         const val GET_GASOLINE_STATION_LIST = "/gasoline_station_list"
-        const val GET_GAS_STATIONS = "/gas_stations"
-        const val GET_CHARGING_STATIONS = "/charging_stations"
-        const val NEW_GASOLINE_STATION = "/gasoline_station/new"
-        const val GET_ALL_BRANDS = "/fuel_station/brands"
     }
 
 }

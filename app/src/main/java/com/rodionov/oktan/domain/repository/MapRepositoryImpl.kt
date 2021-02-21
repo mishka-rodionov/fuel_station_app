@@ -3,9 +3,11 @@ package com.rodionov.oktan.domain.repository
 import android.util.Log
 import com.rodionov.oktan.app.utils.Logger.TAG
 import com.rodionov.oktan.data.database.dao.GasolineStationDao
+import com.rodionov.oktan.data.entities.model.Brand
 import com.rodionov.oktan.data.entities.model.gasoline.GasolineStation
 import com.rodionov.oktan.data.mappers.FuelStationMapper
 import com.rodionov.oktan.data.network.api.FuelStationApi
+import com.rodionov.oktan.data.network.api.MapFuelStationApi
 import com.rodionov.oktan.domain.MapRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -14,7 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MapRepositoryImpl(
         private val gasolineStationDao: GasolineStationDao,
-        private val fuelStationsApi: FuelStationApi
+        private val fuelStationsApi: MapFuelStationApi
 ) : MapRepository {
 
     override fun createLocalGasolineStation(gasolineStation: GasolineStation) {
@@ -70,7 +72,11 @@ class MapRepositoryImpl(
                 )
     }
 
-//    override fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit) {
+    override fun getAllFuelStationBrands(onSuccess: (List<Brand>) -> Unit, onError: (Throwable) -> Unit) {
+
+    }
+
+    //    override fun getFuelStations(onSuccess: (FuelStation) -> Unit, onError: (Throwable) -> Unit) {
 //        fuelStationsApi.getFuelStations()
 //                .subscribeOn(Schedulers.newThread())
 //                .observeOn(AndroidSchedulers.mainThread())
